@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: CytoDataParser
+Version: 0.1.0
+Summary: Eases the analysis and plotting of expert-gated cytometry data
+Author-email: Brendan Foley <bfoley3@jh.edu>
+License: MIT
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: plotly
+Requires-Dist: polars
+Requires-Dist: scikit-learn
+Requires-Dist: statsmodels
+Requires-Dist: scipy
+Requires-Dist: fastexcel
+Requires-Dist: pingouin
+Requires-Dist: scikit-posthocs
+Requires-Dist: nbformat>=4.2.0
+Dynamic: license-file

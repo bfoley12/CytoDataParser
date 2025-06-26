@@ -1,0 +1,11 @@
+pandas
+numpy
+plotly
+polars
+scikit-learn
+statsmodels
+scipy
+fastexcel
+pingouin
+scikit-posthocs
+nbformat>=4.2.0
