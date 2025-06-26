@@ -5,6 +5,7 @@ polars
 scikit-learn
 statsmodels
 scipy
+pyarrow>=8.0.0
 fastexcel
 pingouin
 scikit-posthocs

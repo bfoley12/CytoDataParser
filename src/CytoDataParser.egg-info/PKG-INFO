@@ -13,6 +13,7 @@ Requires-Dist: polars
 Requires-Dist: scikit-learn
 Requires-Dist: statsmodels
 Requires-Dist: scipy
+Requires-Dist: pyarrow>=8.0.0
 Requires-Dist: fastexcel
 Requires-Dist: pingouin
 Requires-Dist: scikit-posthocs
