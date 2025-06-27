@@ -31,7 +31,10 @@ class CytoGateParser:
         """
         Construct a CytoGateParser from an xlsx file
         """
-        samples = [
+        data = pl.read_excel(path)
+        metadata = [col for col in data.columns if '|' not in col]
+        metadata = data[metadata]
+        samples_prep = [
             {
                 "metadata": {k: v[0] if isinstance(v, list) and len(v) == 1 else v
                               for k, v in metadata[row_idx].to_dict(as_series=False).items()},
@@ -39,7 +42,10 @@ class CytoGateParser:
             }
             for row_idx, row in enumerate(data.iter_rows(named=True))
         ]
-        return
+        samples = []
+        for sample in samples_prep:
+            samples.append(Sample(sample["metadata"], sample["tree"]))
+        return cls(samples, data, metadata.columns)
     @classmethod
     def from_samples(cls, samples: List[Dict[str, Any]], original_df: Optional[pl.DataFrame] = None) -> CytoGateParser:
         """

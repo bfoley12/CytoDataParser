@@ -163,12 +163,12 @@ def categorical_plot(
     samples = cgp.get_nodes(terms=node, sample_criteria=sample_criteria)
     if not samples:
         raise ValueError(f"No samples found for node: {node}")
-    message = None
+    message = ""
     nodes_found = ""
     first_node_name = ""
     seen_node_name_sets = set()
 
-    if  color != "node" and facet_row != "node" and facet_col != "node":
+    if color != "node" and facet_row != "node" and facet_col != "node":
         for sample in samples:
             node_list = sample["nodes"]
             if len(node_list) > 1:
@@ -177,7 +177,7 @@ def categorical_plot(
 
             # Extract names and use them to track uniqueness
             node_names = tuple(n.name for n in node_list)
-            if node_names not in seen_node_name_sets:
+            if node_names and node_names not in seen_node_name_sets:
                 if not first_node_name:
                     first_node_name = node_names[0]
                     message += f"Using first node: {first_node_name}\n"
