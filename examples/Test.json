@@ -1,0 +1,2754 @@
+{
+  "samples": [
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 1,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 35434,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 34226,
+              "pct_parent": 96.59084495117683,
+              "pct_root": 96.59084495117683
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 365,
+                  "pct_parent": 1.0664407175831239,
+                  "pct_root": 1.030084100016933
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 315,
+                      "pct_parent": 86.3013698630137,
+                      "pct_root": 0.8889766890557091
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 152,
+                          "pct_parent": 48.25396825396825,
+                          "pct_root": 0.42896652932212
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 16,
+                              "pct_parent": 10.526315789473683,
+                              "pct_root": 0.04515437150759158
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 136,
+                              "pct_parent": 89.47368421052632,
+                              "pct_root": 0.38381215781452843
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 271,
+                          "pct_parent": 86.03174603174604,
+                          "pct_root": 0.7648021674098324
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 15,
+                              "pct_parent": 5.535055350553505,
+                              "pct_root": 0.04233222328836711
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 256,
+                              "pct_parent": 94.4649446494465,
+                              "pct_root": 0.7224699441214653
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 50,
+                      "pct_parent": 13.698630136986301,
+                      "pct_root": 0.14110741096122367
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 27917,
+                  "pct_parent": 81.56664524046047,
+                  "pct_root": 78.78591183608962
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 27909,
+                      "pct_parent": 99.97134362574775,
+                      "pct_root": 78.76333465033584
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 17794,
+                          "pct_parent": 63.757210935540506,
+                          "pct_root": 50.217305412880286
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 19,
+                              "pct_parent": 0.10677756547150725,
+                              "pct_root": 0.053620816165265
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 17775,
+                              "pct_parent": 99.8932224345285,
+                              "pct_root": 50.16368459671502
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 1681,
+                          "pct_parent": 6.023146655200831,
+                          "pct_root": 4.74403115651634
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 140,
+                              "pct_parent": 8.328375966686497,
+                              "pct_root": 0.39510075069142636
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 1541,
+                              "pct_parent": 91.6716240333135,
+                              "pct_root": 4.348930405824914
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 8434,
+                          "pct_parent": 30.21964240925866,
+                          "pct_root": 23.80199808093921
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 8,
+                      "pct_parent": 0.028656374252247735,
+                      "pct_root": 0.02257718575379579
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 5944,
+                  "pct_parent": 17.36691404195641,
+                  "pct_root": 16.774849015070274
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 1208,
+              "pct_parent": 3.409155048823164,
+              "pct_root": 3.409155048823164
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 1,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 73743,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 71467,
+              "pct_parent": 96.91360535915273,
+              "pct_root": 96.91360535915273
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 1149,
+                  "pct_parent": 1.6077350385492604,
+                  "pct_root": 1.5581139904804524
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 1035,
+                      "pct_parent": 90.07832898172323,
+                      "pct_root": 1.4035230462552377
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 597,
+                          "pct_parent": 57.68115942028985,
+                          "pct_root": 0.8095683658109922
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 75,
+                              "pct_parent": 12.562814070351758,
+                              "pct_root": 0.10170456856922012
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 522,
+                              "pct_parent": 87.43718592964824,
+                              "pct_root": 0.7078637972417721
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 979,
+                          "pct_parent": 94.58937198067633,
+                          "pct_root": 1.3275836350568868
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 70,
+                              "pct_parent": 7.150153217568948,
+                              "pct_root": 0.09492426399793878
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 909,
+                              "pct_parent": 92.84984678243106,
+                              "pct_root": 1.232659371058948
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 114,
+                      "pct_parent": 9.921671018276761,
+                      "pct_root": 0.1545909442252146
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 56331,
+                  "pct_parent": 78.82099430506388,
+                  "pct_root": 76.38826736096985
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 56295,
+                      "pct_parent": 99.93609202748043,
+                      "pct_root": 76.33944916805663
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 35198,
+                          "pct_parent": 62.52420285993428,
+                          "pct_root": 47.73063205999213
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 175,
+                              "pct_parent": 0.4971873401897835,
+                              "pct_root": 0.23731065999484696
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 35023,
+                              "pct_parent": 99.50281265981022,
+                              "pct_root": 47.49332139999729
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 5400,
+                          "pct_parent": 9.59232613908873,
+                          "pct_root": 7.322728936983849
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 1276,
+                              "pct_parent": 23.62962962962963,
+                              "pct_root": 1.7303337265909984
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 4124,
+                              "pct_parent": 76.37037037037037,
+                              "pct_root": 5.592395210392851
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 15697,
+                          "pct_parent": 27.883471000976996,
+                          "pct_root": 21.286088171080646
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 36,
+                      "pct_parent": 0.06390797251957181,
+                      "pct_root": 0.04881819291322566
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 13987,
+                  "pct_parent": 19.571270656386865,
+                  "pct_root": 18.967224007702427
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 2276,
+              "pct_parent": 3.0863946408472667,
+              "pct_root": 3.0863946408472667
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 1,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 77895,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 72503,
+              "pct_parent": 93.07786122344181,
+              "pct_root": 93.07786122344181
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 30532,
+                  "pct_parent": 42.11136090920375,
+                  "pct_root": 39.1963540663714
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 30337,
+                      "pct_parent": 99.3613258220883,
+                      "pct_root": 38.94601707426664
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 14857,
+                          "pct_parent": 48.97320104163233,
+                          "pct_root": 19.073111239489055
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 158,
+                              "pct_parent": 1.0634717641515783,
+                              "pct_root": 0.20283715257718724
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 14699,
+                              "pct_parent": 98.93652823584841,
+                              "pct_root": 18.870274086911866
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 30174,
+                          "pct_parent": 99.46270231070969,
+                          "pct_root": 38.736761024456
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 198,
+                              "pct_parent": 0.6561940743686618,
+                              "pct_root": 0.2541883304448296
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 29976,
+                              "pct_parent": 99.34380592563133,
+                              "pct_root": 38.48257269401117
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 195,
+                      "pct_parent": 0.6386741779116992,
+                      "pct_root": 0.2503369921047564
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 892,
+                  "pct_parent": 1.2302939188723225,
+                  "pct_root": 1.1451312664484241
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 861,
+                      "pct_parent": 96.52466367713004,
+                      "pct_root": 1.1053341036010014
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 392,
+                          "pct_parent": 45.52845528455284,
+                          "pct_root": 0.5032415431028949
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 1,
+                              "pct_parent": 0.25510204081632654,
+                              "pct_root": 0.0012837794466910584
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 391,
+                              "pct_parent": 99.74489795918367,
+                              "pct_root": 0.5019577636562038
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 108,
+                          "pct_parent": 12.543554006968641,
+                          "pct_root": 0.1386481802426343
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 6,
+                              "pct_parent": 5.555555555555555,
+                              "pct_root": 0.00770267668014635
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 102,
+                              "pct_parent": 94.44444444444444,
+                              "pct_root": 0.13094550356248796
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 361,
+                          "pct_parent": 41.92799070847851,
+                          "pct_root": 0.4634443802554721
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 31,
+                      "pct_parent": 3.4753363228699556,
+                      "pct_root": 0.03979716284742281
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 41079,
+                  "pct_parent": 56.65834517192392,
+                  "pct_root": 52.736375890621986
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 5392,
+              "pct_parent": 6.922138776558187,
+              "pct_root": 6.922138776558187
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 1,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 53104,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 50368,
+              "pct_parent": 94.84784573666767,
+              "pct_root": 94.84784573666767
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 30977,
+                  "pct_parent": 61.5013500635324,
+                  "pct_root": 58.332705634227175
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 30472,
+                      "pct_parent": 98.36975820770249,
+                      "pct_root": 57.38174148840012
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 17898,
+                          "pct_parent": 58.735888684694146,
+                          "pct_root": 33.70367580596565
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 414,
+                              "pct_parent": 2.313107609788803,
+                              "pct_root": 0.7796022898463393
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 17484,
+                              "pct_parent": 97.6868923902112,
+                              "pct_root": 32.924073516119314
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 30337,
+                          "pct_parent": 99.55697033342085,
+                          "pct_root": 57.12752335040675
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 453,
+                              "pct_parent": 1.4932260935491315,
+                              "pct_root": 0.8530430852666465
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 29884,
+                              "pct_parent": 98.50677390645087,
+                              "pct_root": 56.274480265140106
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 505,
+                      "pct_parent": 1.630241792297511,
+                      "pct_root": 0.9509641458270564
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 669,
+                  "pct_parent": 1.3282242693773825,
+                  "pct_root": 1.259792106056041
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 645,
+                      "pct_parent": 96.41255605381166,
+                      "pct_root": 1.214597770412775
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 203,
+                          "pct_parent": 31.472868217054263,
+                          "pct_root": 0.38226875564929197
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 2,
+                              "pct_parent": 0.9852216748768473,
+                              "pct_root": 0.003766194636938837
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 201,
+                              "pct_parent": 99.01477832512316,
+                              "pct_root": 0.37850256101235313
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 108,
+                          "pct_parent": 16.74418604651163,
+                          "pct_root": 0.2033745103946972
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 9,
+                              "pct_parent": 8.333333333333332,
+                              "pct_root": 0.016947875866224767
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 99,
+                              "pct_parent": 91.66666666666666,
+                              "pct_root": 0.1864266345284724
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 334,
+                          "pct_parent": 51.78294573643411,
+                          "pct_root": 0.6289545043687857
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 24,
+                      "pct_parent": 3.587443946188341,
+                      "pct_root": 0.04519433564326605
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 18722,
+                  "pct_parent": 37.17042566709022,
+                  "pct_root": 35.25534799638445
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 2736,
+              "pct_parent": 5.15215426333233,
+              "pct_root": 5.15215426333233
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 2,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 89774,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 86042,
+              "pct_parent": 95.84289437921892,
+              "pct_root": 95.84289437921892
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 579,
+                  "pct_parent": 0.6729271751005323,
+                  "pct_root": 0.6449528816806648
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 513,
+                      "pct_parent": 88.60103626943005,
+                      "pct_root": 0.5714349366186201
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 275,
+                          "pct_parent": 53.606237816764136,
+                          "pct_root": 0.30632477109185285
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 14,
+                              "pct_parent": 5.090909090909091,
+                              "pct_root": 0.015594715619221601
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 261,
+                              "pct_parent": 94.9090909090909,
+                              "pct_root": 0.2907300554726313
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 475,
+                          "pct_parent": 92.5925925925926,
+                          "pct_root": 0.5291064227950186
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 14,
+                              "pct_parent": 2.9473684210526314,
+                              "pct_root": 0.015594715619221601
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 461,
+                              "pct_parent": 97.05263157894737,
+                              "pct_root": 0.513511707175797
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 66,
+                      "pct_parent": 11.398963730569948,
+                      "pct_root": 0.07351794506204469
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 68520,
+                  "pct_parent": 79.63552683573138,
+                  "pct_root": 76.32499387350458
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 68506,
+                      "pct_parent": 99.97956800934034,
+                      "pct_root": 76.30939915788537
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 44873,
+                          "pct_parent": 65.50229177006393,
+                          "pct_root": 49.98440528438078
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 53,
+                              "pct_parent": 0.11811111358723508,
+                              "pct_root": 0.059037137701338914
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 44820,
+                              "pct_parent": 99.88188888641277,
+                              "pct_root": 49.92536814667944
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 2994,
+                          "pct_parent": 4.370420109187516,
+                          "pct_root": 3.3350413259963907
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 274,
+                              "pct_parent": 9.151636606546425,
+                              "pct_root": 0.30521086283333704
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 2720,
+                              "pct_parent": 90.84836339345357,
+                              "pct_root": 3.0298304631630537
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 20639,
+                          "pct_parent": 30.127288120748545,
+                          "pct_root": 22.98995254750819
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 14,
+                      "pct_parent": 0.020431990659661413,
+                      "pct_root": 0.015594715619221601
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 16943,
+                  "pct_parent": 19.69154598916808,
+                  "pct_root": 18.872947624033685
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 3732,
+              "pct_parent": 4.157105620781072,
+              "pct_root": 4.157105620781072
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 2,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 16697,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 15639,
+              "pct_parent": 93.66353237108463,
+              "pct_root": 93.66353237108463
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 311,
+                  "pct_parent": 1.9886181980945075,
+                  "pct_root": 1.8626100497095288
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 227,
+                      "pct_parent": 72.9903536977492,
+                      "pct_root": 1.359525663292807
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 101,
+                          "pct_parent": 44.49339207048458,
+                          "pct_root": 0.6048990836677247
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 12,
+                              "pct_parent": 11.881188118811881,
+                              "pct_root": 0.07186919805953165
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 89,
+                              "pct_parent": 88.11881188118812,
+                              "pct_root": 0.5330298856081931
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 129,
+                          "pct_parent": 56.82819383259912,
+                          "pct_root": 0.7725938791399652
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 12,
+                              "pct_parent": 9.30232558139535,
+                              "pct_root": 0.07186919805953165
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 117,
+                              "pct_parent": 90.69767441860465,
+                              "pct_root": 0.7007246810804336
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 84,
+                      "pct_parent": 27.009646302250808,
+                      "pct_root": 0.5030843864167215
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 12074,
+                  "pct_parent": 77.20442483534752,
+                  "pct_root": 72.31239144756543
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 12066,
+                      "pct_parent": 99.93374192479708,
+                      "pct_root": 72.26447864885908
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 8851,
+                          "pct_parent": 73.35488148516492,
+                          "pct_root": 53.00952266874289
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 8,
+                              "pct_parent": 0.09038526720144617,
+                              "pct_root": 0.04791279870635443
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 8843,
+                              "pct_parent": 99.90961473279856,
+                              "pct_root": 52.96160987003653
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 523,
+                          "pct_parent": 4.334493618431957,
+                          "pct_root": 3.1322992154279214
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 76,
+                              "pct_parent": 14.531548757170173,
+                              "pct_root": 0.45517158771036714
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 447,
+                              "pct_parent": 85.46845124282983,
+                              "pct_root": 2.677127627717554
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 2692,
+                          "pct_parent": 22.310624896403116,
+                          "pct_root": 16.122656764688266
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 8,
+                      "pct_parent": 0.06625807520291535,
+                      "pct_root": 0.04791279870635443
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 3254,
+                  "pct_parent": 20.806956966557962,
+                  "pct_root": 19.48853087380967
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 1058,
+              "pct_parent": 6.336467628915374,
+              "pct_root": 6.336467628915374
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 2,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 87954,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 81409,
+              "pct_parent": 92.55861018259544,
+              "pct_root": 92.55861018259544
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 27625,
+                  "pct_parent": 33.9335945657114,
+                  "pct_root": 31.408463515019214
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 27099,
+                      "pct_parent": 98.09592760180995,
+                      "pct_root": 30.810423630534146
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 12088,
+                          "pct_parent": 44.60681205948559,
+                          "pct_root": 13.743547763603702
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 84,
+                              "pct_parent": 0.6949040370615487,
+                              "pct_root": 0.0955044682447643
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 12004,
+                              "pct_parent": 99.30509596293845,
+                              "pct_root": 13.648043295358939
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 26920,
+                          "pct_parent": 99.33945902062806,
+                          "pct_root": 30.60690815653637
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 123,
+                              "pct_parent": 0.4569093610698366,
+                              "pct_root": 0.13984582850126204
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 26797,
+                              "pct_parent": 99.54309063893017,
+                              "pct_root": 30.467062328035112
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 526,
+                      "pct_parent": 1.9040723981900451,
+                      "pct_root": 0.5980398844850717
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 1011,
+                  "pct_parent": 1.2418774336989769,
+                  "pct_root": 1.1494644928030562
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 949,
+                      "pct_parent": 93.86745796241345,
+                      "pct_root": 1.0789730995747777
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 475,
+                          "pct_parent": 50.05268703898841,
+                          "pct_root": 0.5400550287650362
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 3,
+                              "pct_parent": 0.631578947368421,
+                              "pct_root": 0.0034108738658844397
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 472,
+                              "pct_parent": 99.36842105263159,
+                              "pct_root": 0.5366441548991518
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 90,
+                          "pct_parent": 9.483667017913593,
+                          "pct_root": 0.10232621597653319
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 1,
+                              "pct_parent": 1.1111111111111112,
+                              "pct_root": 0.0011369579552948132
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 89,
+                              "pct_parent": 98.88888888888889,
+                              "pct_root": 0.10118925802123838
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 384,
+                          "pct_parent": 40.463645943098,
+                          "pct_root": 0.4365918548332083
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 62,
+                      "pct_parent": 6.132542037586548,
+                      "pct_root": 0.07049139322827842
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 52773,
+                  "pct_parent": 64.82452800058962,
+                  "pct_root": 60.00068217477318
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 6545,
+              "pct_parent": 7.441389817404552,
+              "pct_root": 7.441389817404552
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 2,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 87107,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 82476,
+              "pct_parent": 94.68355011652335,
+              "pct_root": 94.68355011652335
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 40234,
+                  "pct_parent": 48.78267617246229,
+                  "pct_root": 46.18916964193463
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 39704,
+                      "pct_parent": 98.68270616891186,
+                      "pct_root": 45.58072255961059
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 31877,
+                          "pct_parent": 80.28662099536571,
+                          "pct_root": 36.59522196838371
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 147,
+                              "pct_parent": 0.46114753584088847,
+                              "pct_root": 0.16875796434270496
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 31730,
+                              "pct_parent": 99.5388524641591,
+                              "pct_root": 36.42646400404101
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 39494,
+                          "pct_parent": 99.47108603667137,
+                          "pct_root": 45.33963975340673
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 150,
+                              "pct_parent": 0.37980452726996505,
+                              "pct_root": 0.17220200443133157
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 39344,
+                              "pct_parent": 99.62019547273003,
+                              "pct_root": 45.167437748975395
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 530,
+                      "pct_parent": 1.3172938310881344,
+                      "pct_root": 0.6084470823240383
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 679,
+                  "pct_parent": 0.8232697996993065,
+                  "pct_root": 0.7795010733924943
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 626,
+                      "pct_parent": 92.19440353460972,
+                      "pct_root": 0.7186563651600905
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 282,
+                          "pct_parent": 45.04792332268371,
+                          "pct_root": 0.3237397683309034
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 1,
+                              "pct_parent": 0.3546099290780142,
+                              "pct_root": 0.0011480133628755439
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 281,
+                              "pct_parent": 99.64539007092199,
+                              "pct_root": 0.32259175496802783
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 100,
+                          "pct_parent": 15.974440894568689,
+                          "pct_root": 0.11480133628755439
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 8,
+                              "pct_parent": 8.0,
+                              "pct_root": 0.009184106903004351
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 92,
+                              "pct_parent": 92.0,
+                              "pct_root": 0.10561722938455004
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 244,
+                          "pct_parent": 38.977635782747605,
+                          "pct_root": 0.2801152605416327
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 53,
+                      "pct_parent": 7.80559646539028,
+                      "pct_root": 0.06084470823240382
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 41563,
+                  "pct_parent": 50.3940540278384,
+                  "pct_root": 47.71487940119623
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 4631,
+              "pct_parent": 5.316449883476643,
+              "pct_root": 5.316449883476643
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 3,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 3856,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 3546,
+              "pct_parent": 91.96058091286307,
+              "pct_root": 91.96058091286307
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 107,
+                  "pct_parent": 3.017484489565708,
+                  "pct_root": 2.774896265560166
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 92,
+                      "pct_parent": 85.98130841121495,
+                      "pct_root": 2.3858921161825726
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 45,
+                          "pct_parent": 48.91304347826087,
+                          "pct_root": 1.1670124481327802
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 3,
+                              "pct_parent": 6.666666666666667,
+                              "pct_root": 0.07780082987551867
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 42,
+                              "pct_parent": 93.33333333333333,
+                              "pct_root": 1.0892116182572613
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 60,
+                          "pct_parent": 65.21739130434783,
+                          "pct_root": 1.5560165975103735
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 4,
+                              "pct_parent": 6.666666666666667,
+                              "pct_root": 0.1037344398340249
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 56,
+                              "pct_parent": 93.33333333333333,
+                              "pct_root": 1.4522821576763485
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 15,
+                      "pct_parent": 14.018691588785046,
+                      "pct_root": 0.38900414937759337
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 2528,
+                  "pct_parent": 71.29159616469262,
+                  "pct_root": 65.56016597510373
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 2528,
+                      "pct_parent": 100.0,
+                      "pct_root": 65.56016597510373
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 1628,
+                          "pct_parent": 64.39873417721519,
+                          "pct_root": 42.219917012448136
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 1,
+                              "pct_parent": 0.06142506142506143,
+                              "pct_root": 0.025933609958506226
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 1627,
+                              "pct_parent": 99.93857493857494,
+                              "pct_root": 42.19398340248963
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 102,
+                          "pct_parent": 4.034810126582278,
+                          "pct_root": 2.645228215767635
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 16,
+                              "pct_parent": 15.686274509803921,
+                              "pct_root": 0.4149377593360996
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 86,
+                              "pct_parent": 84.31372549019608,
+                              "pct_root": 2.2302904564315353
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 798,
+                          "pct_parent": 31.56645569620253,
+                          "pct_root": 20.695020746887966
+                        },
+                        "children": []
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 911,
+                  "pct_parent": 25.69091934574168,
+                  "pct_root": 23.62551867219917
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 310,
+              "pct_parent": 8.03941908713693,
+              "pct_root": 8.03941908713693
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 3,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "LN",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 122236,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 118297,
+              "pct_parent": 96.7775450767368,
+              "pct_root": 96.7775450767368
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 985,
+                  "pct_parent": 0.8326500249372343,
+                  "pct_root": 0.8058182532150922
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 922,
+                      "pct_parent": 93.6040609137056,
+                      "pct_root": 0.7542786085932132
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 721,
+                          "pct_parent": 78.1995661605206,
+                          "pct_root": 0.589842599561504
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 52,
+                              "pct_parent": 7.212205270457697,
+                              "pct_root": 0.04254065905297948
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 669,
+                              "pct_parent": 92.7877947295423,
+                              "pct_root": 0.5473019405085244
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 849,
+                          "pct_parent": 92.08242950108459,
+                          "pct_root": 0.6945580679996073
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 57,
+                              "pct_parent": 6.713780918727916,
+                              "pct_root": 0.04663110703884289
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 792,
+                              "pct_parent": 93.28621908127208,
+                              "pct_root": 0.6479269609607644
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 63,
+                      "pct_parent": 6.395939086294416,
+                      "pct_root": 0.05153964462187899
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 100311,
+                  "pct_parent": 84.79589507764356,
+                  "pct_root": 82.06338558198894
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 100287,
+                      "pct_parent": 99.97607440858928,
+                      "pct_root": 82.0437514316568
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 73849,
+                          "pct_parent": 73.63765991604096,
+                          "pct_root": 60.41509866160541
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 109,
+                              "pct_parent": 0.14759847797532802,
+                              "pct_root": 0.08917176609182238
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 73740,
+                              "pct_parent": 99.85240152202466,
+                              "pct_root": 60.32592689551359
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 4550,
+                          "pct_parent": 4.53697887064126,
+                          "pct_root": 3.7223076671357047
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 756,
+                              "pct_parent": 16.615384615384617,
+                              "pct_root": 0.6184757354625479
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 3794,
+                              "pct_parent": 83.38461538461537,
+                              "pct_root": 3.103831931673157
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 21888,
+                          "pct_parent": 21.82536121331778,
+                          "pct_root": 17.906345102915672
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 24,
+                      "pct_parent": 0.023925591410712682,
+                      "pct_root": 0.019634150332144377
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 17001,
+                  "pct_parent": 14.37145489741921,
+                  "pct_root": 13.908341241532774
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 3939,
+              "pct_parent": 3.222454923263196,
+              "pct_root": 3.222454923263196
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 3,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4023,
+        "Group": "Experimental",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 15742,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 14338,
+              "pct_parent": 91.08118409350782,
+              "pct_root": 91.08118409350782
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 4444,
+                  "pct_parent": 30.99455991072674,
+                  "pct_root": 28.23021217126159
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 4373,
+                      "pct_parent": 98.4023402340234,
+                      "pct_root": 27.779189429551522
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 2233,
+                          "pct_parent": 51.0633432426252,
+                          "pct_root": 14.184982848430948
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 38,
+                              "pct_parent": 1.701746529332736,
+                              "pct_root": 0.24139245330961756
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 2195,
+                              "pct_parent": 98.29825347066726,
+                              "pct_root": 13.94359039512133
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 4348,
+                          "pct_parent": 99.4283100846101,
+                          "pct_root": 27.62037860500572
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 40,
+                              "pct_parent": 0.9199632014719411,
+                              "pct_root": 0.25409731927328166
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 4308,
+                              "pct_parent": 99.08003679852806,
+                              "pct_root": 27.366281285732434
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 71,
+                      "pct_parent": 1.5976597659765976,
+                      "pct_root": 0.45102274171007495
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 272,
+                  "pct_parent": 1.897056772213698,
+                  "pct_root": 1.7278617710583155
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 258,
+                      "pct_parent": 94.85294117647058,
+                      "pct_root": 1.6389277093126666
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 130,
+                          "pct_parent": 50.3875968992248,
+                          "pct_root": 0.8258162876381654
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 0,
+                              "pct_parent": 0.0,
+                              "pct_root": 0.0
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 130,
+                              "pct_parent": 100.0,
+                              "pct_root": 0.8258162876381654
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 24,
+                          "pct_parent": 9.30232558139535,
+                          "pct_root": 0.152458391563969
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 1,
+                              "pct_parent": 4.166666666666666,
+                              "pct_root": 0.006352432981832041
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 23,
+                              "pct_parent": 95.83333333333334,
+                              "pct_root": 0.14610595858213696
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 104,
+                          "pct_parent": 40.310077519379846,
+                          "pct_root": 0.6606530301105323
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 14,
+                      "pct_parent": 5.147058823529411,
+                      "pct_root": 0.08893406174564858
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 9622,
+                  "pct_parent": 67.10838331705956,
+                  "pct_root": 61.12311015118791
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 1404,
+              "pct_parent": 8.918815906492187,
+              "pct_root": 8.918815906492187
+            },
+            "children": []
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "Char. Date": "2025-06-20",
+        "MouseID": 3,
+        "Sex": "Male",
+        "DoB": "2025-03-19",
+        "CageID": 4024,
+        "Group": "Control",
+        "Tissue": "Spleen",
+        "Transplant Date": "2025-05-30",
+        "Transplant Donor Strain": "Balb/c"
+      },
+      "tree": {
+        "name": "Cells",
+        "measures": {
+          "Count": 40436,
+          "pct_root": 100.0
+        },
+        "children": [
+          {
+            "name": "Cells/Singlets",
+            "measures": {
+              "Count": 36549,
+              "pct_parent": 90.3872786625779,
+              "pct_root": 90.3872786625779
+            },
+            "children": [
+              {
+                "name": "Cells/Singlets/CD45.1+ CD4+",
+                "measures": {
+                  "Count": 10493,
+                  "pct_parent": 28.709403814057836,
+                  "pct_root": 25.949648827777228
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 10273,
+                      "pct_parent": 97.90336414752693,
+                      "pct_root": 25.405579186863193
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 6263,
+                          "pct_parent": 60.96563808040495,
+                          "pct_root": 15.488673459293697
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 88,
+                              "pct_parent": 1.4050774389270317,
+                              "pct_root": 0.2176278563656148
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 6175,
+                              "pct_parent": 98.59492256107298,
+                              "pct_root": 15.271045602928085
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th",
+                        "measures": {
+                          "Count": 10189,
+                          "pct_parent": 99.18232259320548,
+                          "pct_root": 25.19784350578692
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Anergic",
+                            "measures": {
+                              "Count": 101,
+                              "pct_parent": 0.9912650898027284,
+                              "pct_root": 0.24977742605598968
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1+ CD4+/CD4+ CD3+/Th/Ungated",
+                            "measures": {
+                              "Count": 10088,
+                              "pct_parent": 99.00873491019728,
+                              "pct_root": 24.948066079730932
+                            },
+                            "children": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1+ CD4+/Ungated",
+                    "measures": {
+                      "Count": 220,
+                      "pct_parent": 2.0966358524730775,
+                      "pct_root": 0.544069640914037
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/CD45.1- CD4+",
+                "measures": {
+                  "Count": 625,
+                  "pct_parent": 1.7100331062409369,
+                  "pct_root": 1.5456523889603324
+                },
+                "children": [
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+",
+                    "measures": {
+                      "Count": 569,
+                      "pct_parent": 91.03999999999999,
+                      "pct_root": 1.4071619349094866
+                    },
+                    "children": [
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive",
+                        "measures": {
+                          "Count": 312,
+                          "pct_parent": 54.833040421792624,
+                          "pct_root": 0.7715896725689979
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Anergic",
+                            "measures": {
+                              "Count": 0,
+                              "pct_parent": 0.0,
+                              "pct_root": 0.0
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Naive/Ungated",
+                            "measures": {
+                              "Count": 312,
+                              "pct_parent": 100.0,
+                              "pct_root": 0.7715896725689979
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem",
+                        "measures": {
+                          "Count": 71,
+                          "pct_parent": 12.478031634446397,
+                          "pct_root": 0.17558611138589375
+                        },
+                        "children": [
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Anergic",
+                            "measures": {
+                              "Count": 8,
+                              "pct_parent": 11.267605633802818,
+                              "pct_root": 0.019784350578692256
+                            },
+                            "children": []
+                          },
+                          {
+                            "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Tmem/Ungated",
+                            "measures": {
+                              "Count": 63,
+                              "pct_parent": 88.73239436619718,
+                              "pct_root": 0.1558017608072015
+                            },
+                            "children": []
+                          }
+                        ]
+                      },
+                      {
+                        "name": "Cells/Singlets/CD45.1- CD4+/CD4+ CD3+/Ungated",
+                        "measures": {
+                          "Count": 186,
+                          "pct_parent": 32.68892794376098,
+                          "pct_root": 0.4599861509545949
+                        },
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Cells/Singlets/CD45.1- CD4+/Ungated",
+                    "measures": {
+                      "Count": 56,
+                      "pct_parent": 8.959999999999999,
+                      "pct_root": 0.13849045405084578
+                    },
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "Cells/Singlets/Ungated",
+                "measures": {
+                  "Count": 25431,
+                  "pct_parent": 69.58056307970122,
+                  "pct_root": 62.89197744584034
+                },
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Cells/Ungated",
+            "measures": {
+              "Count": 3887,
+              "pct_parent": 9.6127213374221,
+              "pct_root": 9.6127213374221
+            },
+            "children": []
+          }
+        ]
+      }
+    }
+  ],
+  "metadata_cols": [
+    "CageID",
+    "Group",
+    "Transplant Donor Strain",
+    "MouseID",
+    "DoB",
+    "Transplant Date",
+    "Char. Date",
+    "Sex",
+    "Tissue"
+  ]
+}

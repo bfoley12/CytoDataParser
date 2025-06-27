@@ -4,7 +4,7 @@ from typing import Optional
 from pathlib import Path
 import json
 from datetime import date, datetime
-from cytodataparser.structures.tree import GateTree
+from cytodataparser.structures import GateTree, Sample
 
 
 def load_from_xlsx(file_path: str, sheet_name: Optional[str] = None) -> CytoGateParser:
@@ -40,14 +40,15 @@ def load_from_json(path: str | Path) -> CytoGateParser:
 
     restored_samples = []
     for sample in data["samples"]:
-        restored_samples.append({
-            "metadata": sample["metadata"],
-            "tree": GateTree.from_dict(sample["tree"])
-        })
+        restored_samples.append(
+            Sample(
+                metadata=sample["metadata"],
+                tree=GateTree.from_dict(sample["tree"])
+            )
+        )
 
-    return CytoGateParser.from_samples(
-        samples=restored_samples,
-        metadata_cols=data.get("metadata_cols")
+    return CytoGateParser(
+        samples=restored_samples
     )
 
 def _sanitize(obj):
@@ -65,18 +66,17 @@ def save_to_json(cgp: CytoGateParser, path: str | Path):
     sanitized_samples = []
 
     for sample in cgp.samples:
-        tree = sample["tree"]
+        tree = sample.tree
         if hasattr(tree, "to_dict"):
             tree = tree.to_dict()  # Convert GateTree -> dict
         sanitized_samples.append({
-            "metadata": _sanitize(sample["metadata"]),
+            "metadata": _sanitize(sample.metadata),
             "tree": _sanitize(tree)
         })
 
     data = {
         "samples": sanitized_samples,
-        "metadata_cols": cgp.metadata_cols,
-        "version": 1
+        "metadata_cols": cgp.metadata_cols
     }
 
     with open(path, "w") as f:

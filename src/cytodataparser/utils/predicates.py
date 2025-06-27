@@ -47,7 +47,8 @@ def parse_string_condition(expr: str) -> Callable[[Any], bool]:
                 except Exception:
                     value = value_str
                 return lambda x: ops[op_str](x, value)
-        raise ValueError(f"Unsupported expression format: {expression}")
+        #raise ValueError(f"Unsupported expression format: {expression}")
+        return expression
 
     # TODO: Handle 'or' conditions
     if ' and ' in expr:

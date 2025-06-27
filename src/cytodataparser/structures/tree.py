@@ -179,7 +179,19 @@ class GateTree:
     def from_dict(data: dict) -> "GateTree":
         tree = GateTree.__new__(GateTree)  # bypass __init__
         tree.root = GateNode.from_dict(data)
+        tree.nodes = GateTree._make_nodes_dfs(tree.root)
         return tree
+    
+    @staticmethod
+    def _make_nodes_dfs(root: GateNode) -> List[GateNode]: 
+        if root.children == []:
+            return {root.name: root}
+        
+        nodes = {}
+        for child in root.children:
+            nodes = nodes | GateTree._make_nodes_dfs(child)
+
+        return nodes
 
     def __str__(self):
         return str(self.root)
