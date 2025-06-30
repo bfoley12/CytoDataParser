@@ -7,6 +7,7 @@ from .themes import (
 
 # Optionally import your plotting functions too
 from .categorical import categorical_plot
+from .helpers import rename_legend
 
 __all__ = [
     # Themes
@@ -16,5 +17,6 @@ __all__ = [
     "get_color_map",
 
     # Core plotting tools
-    "categorical_plot"
+    "categorical_plot",
+    "rename_legend"
 ]

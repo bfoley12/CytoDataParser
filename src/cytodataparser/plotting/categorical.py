@@ -7,7 +7,7 @@ from typing import Optional, Dict, Union, Callable, Any, List, Tuple
 import warnings
 
 from .themes import get_color_map
-from .helpers import violin_helper
+from .helpers import violin_helper, rename_legend
 from cytodataparser import CytoGateParser
 from cytodataparser.utils import helpers
 from cytodataparser.analysis import run_ttest, run_anova
@@ -141,6 +141,7 @@ def categorical_plot(
     x: str,
     y: str = "pct_parent",
     sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
+    legend_names: Optional[Dict[str, str]] = None,
     color: Optional[str] = None,
     facet_row: Optional[str] = None,
     facet_col: Optional[str] = None,
@@ -204,6 +205,11 @@ def categorical_plot(
             color_map = get_color_map(color, pdf[color].unique().tolist())
             
     plot_x = x
+    if "category_orders" not in kwargs and color:
+        kwargs["category_orders"] = {
+            plot_x: pdf[plot_x].cat.categories.tolist(),
+            color: pdf[color].cat.categories.tolist()
+        }
 
     # Main plot
     if plot_type == "box":
@@ -212,8 +218,6 @@ def categorical_plot(
             facet_row=facet_row, facet_col=facet_col,
             points="all" if show_points else "outliers",
             color_discrete_map=color_map,
-            category_orders={plot_x: pdf[plot_x].cat.categories.tolist(),
-                             color: pdf[color].cat.categories.tolist()} if color else None,
             **kwargs
         )
 
@@ -223,8 +227,6 @@ def categorical_plot(
             facet_row=facet_row, facet_col=facet_col,
             points="all" if show_points else "outliers",
             color_discrete_map=color_map,
-            category_orders={plot_x: pdf[plot_x].cat.categories.tolist(),
-                             color: pdf[color].cat.categories.tolist()} if color else None,
             **kwargs
         )
 
@@ -328,4 +330,7 @@ def categorical_plot(
         y_max = (y_data + y_err).max()
 
         fig.update_yaxes(range=[0, y_max * 1.25])
+    
+    if legend_names is not None:
+        fig = rename_legend(fig, legend_names)
     return fig

@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+from typing import Dict
 
 def violin_helper(
     df: pd.DataFrame,
@@ -50,4 +51,12 @@ def violin_helper(
         yaxis_title=y
     )
 
+    return fig
+
+def rename_legend(fig: go.Figure, new_names: Dict[str, str]):
+    fig.for_each_trace(lambda t: t.update(name = new_names[t.name],
+                                        legendgroup = new_names[t.name],
+                                        hovertemplate = t.hovertemplate.replace(t.name, new_names[t.name])
+                                        )
+                    )
     return fig
