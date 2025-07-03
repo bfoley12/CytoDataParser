@@ -1,16 +1,17 @@
 from __future__ import annotations
-from typing import Optional, Dict, List
+from typing import Optional, Dict, List, Any
 import polars as pl
 from .node import GateNode
 
-
+# TODO: Make sure from_dict and constructor still work
 class GateTree:
     """
     Represents a tree of gates for a single sample.
     Automatically builds its structure from a single row of cytometry data.
     """
 
-    def __init__(self, row: pl.Series):
+    # TODO: Consider changing row to be a dict
+    def __init__(self, row: Dict[str, Any]):
         """
         Initialize the GateTree using a row of cytometry data.
 
@@ -18,12 +19,13 @@ class GateTree:
             row (pl.Series): A single sample's data with columns in the format 'path/to/gate | Measurement'.
         """
         self.nodes: Dict[str, GateNode] = {}
-        self.root: Optional[GateNode] = None
+        self.root: Optional[GateNode] = None  # Defer actual root assignment
+        self._build_tree_from_row(row)
         self._build_tree_from_row(row)
         self._insert_ungated_nodes()
         self._compute_percentages()
 
-    def _build_tree_from_row(self, row: pl.Series):
+    def _build_tree_from_row(self, row: Dict[str, Any]):
         """Build the tree structure from a single sample row."""
         for col, value in row.items():
             if "|" not in col:
@@ -31,30 +33,27 @@ class GateTree:
             path_part, measure_name = [x.strip() for x in col.split("|", 1)]
             node = self._ensure_node_exists(path_part)
             node.measures[measure_name] = value
+            #if "Count" in node.measures.keys():
+            #    node.update_pct()
 
     def _ensure_node_exists(self, path: str) -> GateNode:
-        """
-        Ensure that a node and all its ancestors exist in the tree.
-
-        Parameters:
-            path (str): Full gate path.
-
-        Returns:
-            GateNode: The node corresponding to the given path.
-        """
         parts = path.split("/")
         for i in range(1, len(parts) + 1):
             sub_path = "/".join(parts[:i])
             if sub_path not in self.nodes:
-                parent_path = "/".join(parts[:i - 1]) if i > 1 else None
+                parent_path = "/".join(parts[:i - 1]) if i > 1 else ""
                 parent_node = self.nodes.get(parent_path)
                 node = GateNode(name=sub_path, parent=parent_node)
                 self.nodes[sub_path] = node
+
                 if parent_node:
                     parent_node.add_child(node)
                 else:
+                    if self.root is not None:
+                        raise ValueError(f"Multiple root nodes found. Current root: {self.root.name}, new root: {sub_path}")
                     self.root = node
         return self.nodes[path]
+
 
     def _compute_percentages(self):
         """
@@ -173,8 +172,10 @@ class GateTree:
         }
     
     def to_dict(self) -> dict:
-        return self.root.to_dict()
-
+        if self.root:
+            return self.root.to_dict()
+        return {"Error": "root not set"}
+    
     @staticmethod
     def from_dict(data: dict) -> "GateTree":
         tree = GateTree.__new__(GateTree)  # bypass __init__
@@ -183,15 +184,12 @@ class GateTree:
         return tree
     
     @staticmethod
-    def _make_nodes_dfs(root: GateNode) -> List[GateNode]: 
-        if root.children == []:
-            return {root.name: root}
-        
-        nodes = {}
+    def _make_nodes_dfs(root: GateNode) -> dict:
+        nodes = {root.name: root}
         for child in root.children:
-            nodes = nodes | GateTree._make_nodes_dfs(child)
-
+            nodes.update(GateTree._make_nodes_dfs(child))
         return nodes
+
 
     def __str__(self):
         return str(self.root)

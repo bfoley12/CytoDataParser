@@ -21,7 +21,7 @@ def describe_metric(
     matches = cgp.get_nodes(node, sample_criteria)
 
     records = []
-    matched_samples = [] if return_nodes else None
+    matched_samples = []
 
     for match in matches:
         meta = match["metadata"]

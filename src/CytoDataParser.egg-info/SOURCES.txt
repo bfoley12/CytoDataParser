@@ -21,6 +21,7 @@ src/cytodataparser/plotting/helpers.py
 src/cytodataparser/plotting/themes.py
 src/cytodataparser/structures/__init__.py
 src/cytodataparser/structures/node.py
+src/cytodataparser/structures/sample.py
 src/cytodataparser/structures/tree.py
 src/cytodataparser/utils/__init__.py
 src/cytodataparser/utils/helpers.py

@@ -10,8 +10,8 @@ import numpy as np
 #TODO: Include alpha in function definition and add significance level to results
 def run_ttest(
     cgp: CytoGateParser,
-    node: Union[List[str], List[List[str]]],
-    sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]] = None,
+    node: Union[str, List[str], List[List[str]]],
+    sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     metric: str = "pct_parent",
     groupby: Optional[str] = None,
     alpha: float = 0.05,
@@ -46,8 +46,12 @@ def run_ttest(
         # Paired t-test: compare two nodes within each sample
         node_a = node[0]
         node_b = node[1]
-        matches_a = cgp.get_nodes(node[0], sample_criteria)
-        matches_b = cgp.get_nodes(node[1], sample_criteria)
+        if isinstance(node_a, str):
+            node_a = [node_a]
+        if isinstance(node_b, str):
+            node_b = [node_b]
+        matches_a = cgp.get_nodes(node_a, sample_criteria)
+        matches_b = cgp.get_nodes(node_b, sample_criteria)
 
         indexed_a = {helpers.stringify_metadata(m["metadata"]): m for m in matches_a}
         indexed_b = {helpers.stringify_metadata(m["metadata"]): m for m in matches_b}
@@ -81,18 +85,21 @@ def run_ttest(
             "p_value": float(pval)
         })
 
+        # TODO: Test to make sure node_a[0] really returns the name - used to be node_a.name
         if return_values:
             results["values"] = {
-                node_a.name: values_a,
-                node_b.name: values_b
+                node_a[0]: values_a,
+                node_b[0]: values_b
             }
 
     else:
         # Unpaired test: compare metric for same node across groups
         if groupby is None:
             raise ValueError("Unpaired t-tests require a `groupby` field for metadata grouping.")
-
-        matches = cgp.get_nodes(node, sample_criteria)
+        if isinstance(node, str):
+            node = [node]
+        # TODO: Merge when node is List[List[str]]
+        matches = cgp.get_nodes(terms=node, sample_criteria=sample_criteria)
         group_vals: Dict[Any, List[float]] = {}
 
         for match in matches:
@@ -150,7 +157,7 @@ def run_anova(
     cgp: CytoGateParser,
     node: List[str],
     groupby: Optional[str],
-    sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]] = None,
+    sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     metric: str = "pct_parent",
     flavor: str = "auto",  # "auto", "anova", "kruskal"
     posthoc: str = "auto",  # "auto", "tukey", "games-howell", "dunn"
@@ -274,7 +281,7 @@ def run_chi2_test(
     cgp: CytoGateParser,
     row_field: str,
     col_field: str,
-    sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]] = None,
+    sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     correction: bool = True
 ) -> dict:
     """
@@ -361,7 +368,7 @@ def run_correlation(
     node_a: List[str],
     node_b: Optional[List[str]] = None,
     metric: Union[str, List[str]] = "Count",
-    sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]] = None,
+    sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     method: str = "pearson",
     return_values: bool = False
 ) -> dict:
@@ -391,6 +398,9 @@ def run_correlation(
     is_metric_pair = isinstance(metric, List) and len(metric) == 2
     is_node_pair = node_b is not None and isinstance(metric, str)
 
+    label_a = ""
+    label_b = ""
+
     if not (is_metric_pair or is_node_pair):
         raise ValueError(
             "You must provide either two nodes and one metric, or one node and two metrics."
@@ -415,7 +425,9 @@ def run_correlation(
 
     elif is_node_pair:
         matches_a = cgp.get_nodes(node_a, sample_criteria)
-        matches_b = cgp.get_nodes(node_b, sample_criteria)
+        matches_b = []
+        if node_b is not None:
+            matches_b = cgp.get_nodes(node_b, sample_criteria)
 
         index_a = {helpers.stringify_metadata(m["metadata"]): m for m in matches_a}
         index_b = {helpers.stringify_metadata(m["metadata"]): m for m in matches_b}
@@ -431,7 +443,8 @@ def run_correlation(
                 y.append(val2)
 
         label_a = "/".join(node_a)
-        label_b = "/".join(node_b)
+        if node_b is not None:
+            label_b = "/".join(node_b)
 
     if len(x) < 3:
         raise ValueError("Too few valid paired samples to compute correlation.")

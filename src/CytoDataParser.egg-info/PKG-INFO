@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: CytoDataParser
-Version: 0.1.0
+Version: 0.2.0
 Summary: Eases the analysis and plotting of expert-gated cytometry data
 Author-email: Brendan Foley <bfoley3@jh.edu>
 License: MIT

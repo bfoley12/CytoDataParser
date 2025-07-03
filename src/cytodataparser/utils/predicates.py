@@ -23,7 +23,8 @@ def matches_regex(pattern: str) -> Callable[[Any], bool]:
     compiled = re.compile(pattern)
     return lambda x: isinstance(x, str) and compiled.search(x) is not None
 
-#TODO: allow for str == int, ie MouseID == 1
+# TODO: allow for str == int, ie MouseID == 1
+# TODO: fix return types: str is returned in parse_single, which is not callable
 def parse_string_condition(expr: str) -> Callable[[Any], bool]:
     """
     Convert string expressions like '> 10', '<= 50', or compound forms like '> 10 and < 20'

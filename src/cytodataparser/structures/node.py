@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Optional, Dict, List
 import polars as pl
 
-
+# TODO: create __getitem__()
 class GateNode:
     """
     Represents a single gate in the cytometry gating hierarchy.
@@ -11,9 +11,9 @@ class GateNode:
 
     def __init__(
         self,
-        name: str,
+        name: str = "",
         parent: Optional[GateNode] = None,
-        measures: Optional[Dict[str, float]] = None,
+        measures: Optional[Dict[str, float]] = {},
     ):
         """
         Initialize a GateNode.
@@ -27,7 +27,7 @@ class GateNode:
         self.children: List[GateNode] = []
         
         # If measures isn't provided, initialize as an empty dictionary
-        self.measures: Dict[str, float] = measures if measures is not None else {}  # e.g., {"Count": 1000, "MFI": 432.1}
+        self.measures: Dict[str, float] = dict(measures) if measures else {}  # e.g., {"Count": 1000, "MFI": 432.1}
 
     def add_child(self, child: GateNode):
         """Add a child node to this gate."""
@@ -91,6 +91,11 @@ class GateNode:
             "measures": self.measures,
             "children": [child.to_dict() for child in self.children]
         }
+    
+    def update_pct(self):
+        if self.parent and self.parent.measures["Count"] > 0:
+            self.measures["pct_parent"] = self.measures["Count"] / self.parent.measures["Count"] if self.parent.measures["Count"] > 0 else 0
+
 
     @staticmethod
     def from_dict(data: dict) -> "GateNode":

@@ -137,7 +137,7 @@ def add_significance(
 
 def categorical_plot(
     cgp: CytoGateParser,
-    node: str,
+    node: Union[List[str], str],
     x: str,
     y: str = "pct_parent",
     sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
@@ -159,6 +159,9 @@ def categorical_plot(
     Plot a specific measure from a specific GateNode across samples in a CytoGateParser.
     Smart defaults ensure clean and interpretable plots for bench scientists.
     """
+
+    if isinstance(node, str):
+        node = [node]
 
     # Get and flatten data
     samples = cgp.get_nodes(terms=node, sample_criteria=sample_criteria)
@@ -259,6 +262,10 @@ def categorical_plot(
             color_discrete_map=color_map,
             **kwargs
         )
+        y_data = final_df[agg_func]
+        y_err = final_df["error"] if "error" in final_df else 0
+        y_max = (y_data + y_err).max()
+        fig.update_yaxes(range=[0, y_max * 1.25])
     else:
         raise ValueError(f"Unsupported plot_type: {plot_type}")
 
@@ -280,13 +287,13 @@ def categorical_plot(
             if pdf[x].nunique() == 2:
                 if verbose:
                     print("Running t-test")
-                t_result = run_ttest(pdf, groupby=x, target=y)
+                t_result = run_ttest(cgp, node, groupby=x, metric=y)
                 p_map = extract_ttest_pval(t_result)
 
             elif pdf[x].nunique() > 2:
                 if verbose:
                     print("Running ANOVA")
-                a_result = run_anova(cgp, node=[node], groupby=x, sample_criteria=sample_criteria, metric=y)
+                a_result = run_anova(cgp, node=node, groupby=x, sample_criteria=sample_criteria, metric=y)
                 p_map = extract_pairwise_pvals(a_result)
 
             if not p_map or all(p >= 0.05 for p in p_map.values()):
@@ -322,14 +329,7 @@ def categorical_plot(
     )
 
     # Uncommenting causes boxes and violins to stack instead of group
-    # fig.update_traces(width=0.5)
-
-    if plot_type in {"bar", "grouped_bar"}:
-        y_data = final_df[agg_func]
-        y_err = final_df["error"] if "error" in final_df else 0
-        y_max = (y_data + y_err).max()
-
-        fig.update_yaxes(range=[0, y_max * 1.25])
+    # fig.update_traces(width=0.5)        
     
     if legend_names is not None:
         fig = rename_legend(fig, legend_names)

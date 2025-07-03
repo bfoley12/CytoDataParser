@@ -1,7 +1,9 @@
 import polars as pl
 from collections import defaultdict
+from typing import List
+from cytodataparser.structures import GateNode
 
-def flatten_samples(samples: list[dict]) -> pl.DataFrame:
+def flatten_samples(samples: List[GateNode]) -> pl.DataFrame:
     """
     Flattens a list of samples into a Polars DataFrame.
 

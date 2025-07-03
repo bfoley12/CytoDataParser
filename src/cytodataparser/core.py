@@ -12,7 +12,7 @@ class CytoGateParser:
     Parses a Polars DataFrame into metadata and gating trees, one per sample.
     """
 
-    def __init__(self, samples: List[Sample], original_df: pl.DataFrame = None, metadata_cols=None):
+    def __init__(self, samples: List[Sample], original_df: Optional[Union[pl.DataFrame, None]] = None, metadata_cols=None):
         """
         Initialize the CytoGateParser.
 
@@ -27,11 +27,11 @@ class CytoGateParser:
 
     # TODO: Implement loading from xlsx, csv, and polars dataframe
     @classmethod
-    def from_xlsx(cls, path: str) -> CytoGateParser:
+    def from_xlsx(cls, path: str, sheet_name: Optional[Union[str, None]]= None) -> CytoGateParser:
         """
         Construct a CytoGateParser from an xlsx file
         """
-        data = pl.read_excel(path)
+        data = pl.read_excel(path, sheet_name=sheet_name)
         metadata = [col for col in data.columns if '|' not in col]
         metadata = data[metadata]
         samples_prep = [
@@ -46,8 +46,10 @@ class CytoGateParser:
         for sample in samples_prep:
             samples.append(Sample(sample["metadata"], sample["tree"]))
         return cls(samples, data, metadata.columns)
+    
+    # TODO: Redundant with default __init__
     @classmethod
-    def from_samples(cls, samples: List[Dict[str, Any]], original_df: Optional[pl.DataFrame] = None) -> CytoGateParser:
+    def from_samples(cls, samples: List[Sample], original_df: Optional[pl.DataFrame] = None) -> CytoGateParser:
         """
         Construct a CytoGateParser from a list of samples.
         """
@@ -83,6 +85,8 @@ class CytoGateParser:
         """Infer metadata columns as those that do not contain '|' in their names."""
         return [col for col in df.columns if '|' not in col]
 
+    # Deprecated
+    '''
     def _build_samples(self) -> List[Dict[str, Any]]:
         """
         Build a list of samples, each represented as a dictionary with metadata and a GateTree.
@@ -98,11 +102,12 @@ class CytoGateParser:
             }
             for row_idx, row in enumerate(self.data.iter_rows(named=True))
         ]
+        '''
 
     def __len__(self):
         return len(self.samples)
 
-    def __getitem__(self, index: int) -> Dict[str, Any]:
+    def __getitem__(self, index: int) -> Sample:
         return self.samples[index]
 
     def get_tree(self, index: int) -> GateTree:
@@ -112,7 +117,7 @@ class CytoGateParser:
         return self.samples[index].metadata
 
     #TODO: Allow for exact values like {"Strain": "B6"}, currently it has to be e.g., {"Strain": "== B6"}
-    def find_samples(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> List[int]:
+    def find_samples(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> List[Sample]:
         """
         Find sample indices matching specified metadata criteria.
 
@@ -156,7 +161,9 @@ class CytoGateParser:
         return matched_samples
 
     #TODO: If sample_criteria isn't specified, get all samples (currently returns [])
-    def get_nodes(self, terms: List[str], sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]= None, exclude_children: bool=True, sample_idx: int=None) -> List[GateNode]:
+    def get_nodes(self, terms: List[str], 
+                  sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]]= None, 
+                  exclude_children: bool=True, sample_idx: Optional[int]=None) -> List[GateNode]:
         """
         Find all nodes across all samples that match the given terms.
 
@@ -202,6 +209,8 @@ class CytoGateParser:
     
     def _find_samples_index(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> List[int]:
         """
+        Deprecated in favor of find_samples()
+
         Find sample indices matching specified metadata criteria.
 
         Parameters:
@@ -216,7 +225,7 @@ class CytoGateParser:
             List[int]: Indices of samples where metadata matches all criteria.
         """
         matched_indices = []
-        for sample in self.samples:
+        for sample, idx in zip(self.samples, range(len(self.samples))):
             metadata = sample["metadata"]
             match = True
             for key, condition in criteria.items():

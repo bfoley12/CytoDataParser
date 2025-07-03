@@ -18,8 +18,7 @@ def load_from_xlsx(file_path: str, sheet_name: Optional[str] = None) -> CytoGate
     Returns:
         CytoGateParser: An instance of CytoGateParser loaded with data from the specified sheet.
     """
-    df = pl.read_excel(file_path, sheet_name=sheet_name)
-    return CytoGateParser(df)
+    return CytoGateParser.from_xlsx(file_path, sheet_name)
 
 def load_from_csv(file_path: str) -> CytoGateParser:
     """
