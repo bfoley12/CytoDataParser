@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Optional, Dict, List, Any
+from typing import Optional, Dict, List, Any, Union
 import polars as pl
 from .node import GateNode
 
@@ -97,7 +97,7 @@ class GateTree:
                     node.add_child(ungated_node)
                     self.nodes[ungated_path] = ungated_node
 
-    def get_nodes(self, terms: List[str], exclude_children: bool = True) -> List[GateNode]:
+    def get_nodes(self, terms: Union[List[List[str]], List[str]], exclude_children: bool = True) -> List[GateNode]:
         """
         Retrieve nodes by either full path or path component match.
         If a single term is given, perform full path or partial match.
@@ -116,20 +116,40 @@ class GateTree:
         matches = set()
         if len(terms) == 1 and terms[0] in self.nodes:
             matches.add(self.nodes[terms[0]])
+        
+        multiple_conditions = False
+        if isinstance(terms[0], List):
+            multiple_conditions = True
         else:
-            for path, node in self.nodes.items():
-                segments = path.split("/")
-                match_idx = 0
-                for seg in segments:
-                    if match_idx < len(terms) and seg == terms[match_idx]:
-                        match_idx += 1
-                    if match_idx == len(terms):
-                        if exclude_children:
-                            if segments[-1] == terms[-1]:
+            if multiple_conditions:
+                for condition in terms:
+                    for path, node in self.nodes.items():
+                        segments = path.split("/")
+                        match_idx = 0
+                        for seg in segments:
+                            if match_idx < len(condition) and seg == condition[match_idx]:
+                                match_idx += 1
+                            if match_idx == len(condition):
+                                if exclude_children:
+                                    if segments[-1] == condition[-1]:
+                                        matches.add(node)
+                                else:
+                                    matches.add(node)
+                                break
+            else:
+                for path, node in self.nodes.items():
+                    segments = path.split("/")
+                    match_idx = 0
+                    for seg in segments:
+                        if match_idx < len(terms) and seg == terms[match_idx]:
+                            match_idx += 1
+                        if match_idx == len(terms):
+                            if exclude_children:
+                                if segments[-1] == terms[-1]:
+                                    matches.add(node)
+                            else:
                                 matches.add(node)
-                        else:
-                            matches.add(node)
-                        break
+                            break
         return list(matches)
 
     def max_depth(self) -> int:

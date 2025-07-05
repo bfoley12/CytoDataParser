@@ -20,7 +20,8 @@ def load_from_xlsx(file_path: str, sheet_name: Optional[str] = None) -> CytoGate
     """
     return CytoGateParser.from_xlsx(file_path, sheet_name)
 
-def load_from_csv(file_path: str) -> CytoGateParser:
+# TODO: Actually implement
+'''def load_from_csv(file_path: str) -> CytoGateParser:
     """
     Load a CytoGateParser from a CSV file.
 
@@ -32,6 +33,7 @@ def load_from_csv(file_path: str) -> CytoGateParser:
     """
     df = pl.read_csv(file_path)
     return CytoGateParser(df)
+    '''
 
 def load_from_json(path: str | Path) -> CytoGateParser:
     with open(path, "r") as f:

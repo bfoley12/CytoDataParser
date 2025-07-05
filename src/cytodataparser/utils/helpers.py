@@ -2,12 +2,13 @@ import polars as pl
 from collections import defaultdict
 from typing import List
 from cytodataparser.structures import GateNode
+from cytodataparser.structures import NodeResult
 
-def flatten_samples(samples: List[GateNode]) -> pl.DataFrame:
+def flatten_samples(samples: List[NodeResult]) -> pl.DataFrame:
     """
     Flattens a list of samples into a Polars DataFrame.
 
-    Each sample must be a dict with keys:
+    Each sample in samples must be a NodeResult:
     - "metadata": a dict of sample-level metadata
     - "nodes": a list of GateNode objects with .name and .measures
 

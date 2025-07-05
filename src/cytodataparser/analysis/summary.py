@@ -7,7 +7,7 @@ import numpy as np
 def describe_metric(
     cgp: CytoGateParser,
     node: List[str],
-    sample_criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]] = None,
+    sample_criteria: Union[Dict[str, Union[Any, str, range, Callable[[Any], bool]]], None] = None,
     metric: str = "pct_parent",
     groupby: Optional[str] = None,
     quantiles: Tuple[float, float] = (0.25, 0.75),

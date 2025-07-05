@@ -8,6 +8,7 @@ from collections import defaultdict
 import numpy as np
 
 #TODO: Include alpha in function definition and add significance level to results
+# TODO: Test passing node as str, List[str] and List[List[str]]
 def run_ttest(
     cgp: CytoGateParser,
     node: Union[str, List[str], List[List[str]]],
@@ -24,7 +25,7 @@ def run_ttest(
 
     Parameters:
         cgp: CytoGateParser object
-        node: A single node (str) for group-wise comparison, or a tuple of two nodes for within-sample paired test
+        node: A single node (str) for group-wise comparison, or a list of two nodes for within-sample paired test
         sample_criteria: Filter criteria for sample metadata
         metric: Metric to compare (e.g., "Count", "proliferation index")
         groupby: Metadata field to use for grouping (required for unpaired tests)
@@ -98,7 +99,7 @@ def run_ttest(
             raise ValueError("Unpaired t-tests require a `groupby` field for metadata grouping.")
         if isinstance(node, str):
             node = [node]
-        # TODO: Merge when node is List[List[str]]
+
         matches = cgp.get_nodes(terms=node, sample_criteria=sample_criteria)
         group_vals: Dict[Any, List[float]] = {}
 
@@ -122,7 +123,7 @@ def run_ttest(
             stat, pval = ttest_ind(vals1, vals2, equal_var=False)
         else:
             raise ValueError(f"Unsupported flavor '{flavor}' for unpaired test.")
-
+        
         if return_nodes:
             results.update({
                 "nodes": node,
@@ -131,8 +132,8 @@ def run_ttest(
             "groupby": groupby,
             "groups": [group1, group2],
             "n_per_group": {group1: len(vals1), group2: len(vals2)},
-            "statistic": float(stat),
-            "p_value": float(pval),
+            "statistic": float(stat), # type: ignore
+            "p_value": float(pval), # type: ignore
             "group_means": {
                 group1: float(np.mean(vals1)),
                 group2: float(np.mean(vals2))
@@ -338,9 +339,9 @@ def run_chi2_test(
     chi2, p, dof, expected = chi2_contingency(observed, correction=correction)
 
     # Evaluate expected counts
-    low_expected = expected < 5
+    low_expected = expected < 5 # type: ignore
     num_low = np.sum(low_expected)
-    total = expected.size
+    total = expected.size # type: ignore
     percent_low = num_low / total
 
     if num_low > 0:
@@ -356,11 +357,11 @@ def run_chi2_test(
         "col_field": col_field,
         "row_labels": row_categories,
         "col_labels": col_categories,
-        "chi2": float(chi2),
-        "p_value": float(p),
-        "degrees_of_freedom": int(dof),
+        "chi2": float(chi2), # type: ignore
+        "p_value": float(p), # type: ignore
+        "degrees_of_freedom": int(dof), # type: ignore
         "observed": observed.tolist(),
-        "expected": expected.tolist()
+        "expected": expected.tolist() # type: ignore
     }
 
 def run_correlation(
@@ -458,8 +459,8 @@ def run_correlation(
         "gates": [label_a, label_b],
         "metrics": metric if isinstance(metric, str) else f"{metric[0]} vs {metric[1]}",
         "n": len(x),
-        "correlation": float(corr),
-        "p_value": float(pval),
+        "correlation": float(corr), # type: ignore
+        "p_value": float(pval), # type: ignore
         
     }
     if return_values:

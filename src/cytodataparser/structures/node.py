@@ -112,3 +112,19 @@ class GateNode:
 
     def __repr__(self):
         return self.__str__()
+
+    # TODO: Finish working on this
+    def __getitem__(self, key: str) -> float | GateNode | List[GateNode] | int | bool:
+        if key in self.measures:
+            return self.measures[key]
+        
+        summary = self.summary()
+        if key in summary:
+            return summary[key]
+        
+        for child in self.children:
+            if child.name.split("/")[-1] == key:
+                return child
+        
+        raise KeyError(f"'{key}' not found in measures, summary, or children of node '{self.name}'")
+        

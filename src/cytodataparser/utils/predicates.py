@@ -25,6 +25,8 @@ def matches_regex(pattern: str) -> Callable[[Any], bool]:
 
 # TODO: allow for str == int, ie MouseID == 1
 # TODO: fix return types: str is returned in parse_single, which is not callable
+
+
 def parse_string_condition(expr: str) -> Callable[[Any], bool]:
     """
     Convert string expressions like '> 10', '<= 50', or compound forms like '> 10 and < 20'
@@ -48,16 +50,16 @@ def parse_string_condition(expr: str) -> Callable[[Any], bool]:
                 except Exception:
                     value = value_str
                 return lambda x: ops[op_str](x, value)
-        #raise ValueError(f"Unsupported expression format: {expression}")
-        return expression
-
-    # TODO: Handle 'or' conditions
+        # If no known operator matched, return a predicate that always fails
+        return lambda x: False
+        
     if ' and ' in expr:
         parts = expr.split(' and ')
         funcs = [parse_single(part.strip()) for part in parts]
         return lambda x: all(f(x) for f in funcs)
 
     return parse_single(expr.strip())
+
 
 
 def from_range(r: range) -> Callable[[Any], bool]:

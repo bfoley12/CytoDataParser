@@ -1,9 +1,12 @@
 from __future__ import annotations
-from typing import Optional, List, Dict, Any, Callable, Union
+from typing import Optional, List, Dict, Any, Callable, Union, Iterator
 import polars as pl
 from .structures import GateTree, GateNode, Sample
 from .utils.predicates import parse_string_condition, from_range
 from datetime import date, datetime
+from cytodataparser.structures import NodeResult
+
+
 
 #TODO: Allow for loading with a .wsp file instead of polars dataframe
 class CytoGateParser:
@@ -27,7 +30,7 @@ class CytoGateParser:
 
     # TODO: Implement loading from xlsx, csv, and polars dataframe
     @classmethod
-    def from_xlsx(cls, path: str, sheet_name: Optional[Union[str, None]]= None) -> CytoGateParser:
+    def from_xlsx(cls, path: str, sheet_name: Optional[Union[str, None]]=None) -> CytoGateParser:
         """
         Construct a CytoGateParser from an xlsx file
         """
@@ -115,10 +118,11 @@ class CytoGateParser:
 
     def get_metadata(self, index: int) -> Dict[str, Any]:
         return self.samples[index].metadata
-
+    
     #TODO: Allow for exact values like {"Strain": "B6"}, currently it has to be e.g., {"Strain": "== B6"}
-    def find_samples(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> List[Sample]:
+    def filter(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> CytoGateParser:
         """
+        Deprecated: Use filter instead
         Find sample indices matching specified metadata criteria.
 
         Parameters:
@@ -130,7 +134,53 @@ class CytoGateParser:
                     - callable predicates (e.g., {"Age": lambda x: x > 10})
 
         Returns:
-            List[int]: Indices of samples where metadata matches all criteria.
+            CytoGateParser: A new CytoGateParser with filters applied.
+        """
+        matched_samples = []
+        for sample in self.samples:
+            metadata = sample.metadata
+            match = True
+            for key, condition in criteria.items():
+                value = metadata.get(key)
+
+                if isinstance(condition, str):
+                    try:
+                        condition = parse_string_condition(condition)
+                    except Exception:
+                        match = False
+                        break
+                elif isinstance(condition, range):
+                    condition = from_range(condition)
+
+                if callable(condition):
+                    if not condition(value):
+                        match = False
+                        break
+                elif value != condition:
+                    match = False
+                    break
+
+            if match:
+                matched_samples.append(sample)
+        return CytoGateParser.from_samples(matched_samples)
+
+    #TODO: Allow for exact values like {"Strain": "B6"}, currently it has to be e.g., {"Strain": "== B6"}
+    # DEPRECATED
+    def find_samples(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> List[Sample]:
+        """
+        Deprecated: Use filter instead
+        Find sample indices matching specified metadata criteria.
+
+        Parameters:
+            criteria (Dict[str, Union[Any, str, range, Callable[[Any], bool]]]):
+                Metadata fields and either:
+                    - exact values (e.g., {"Strain": "B6"})
+                    - string expressions (e.g., {"Age": "> 10"})
+                    - range (e.g., {"Age": range(10, 20)})
+                    - callable predicates (e.g., {"Age": lambda x: x > 10})
+
+        Returns:
+            List[Sample]: List of samples meeting criteria.
         """
         matched_samples = []
         for sample in self.samples:
@@ -161,9 +211,11 @@ class CytoGateParser:
         return matched_samples
 
     #TODO: If sample_criteria isn't specified, get all samples (currently returns [])
-    def get_nodes(self, terms: List[str], 
+    def get_nodes(self, 
+                  terms: Union[List[List[str]], List[str]], 
                   sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]]= None, 
-                  exclude_children: bool=True, sample_idx: Optional[int]=None) -> List[GateNode]:
+                  exclude_children: bool=True, sample_idx: Optional[int]=None
+                  ) -> List[NodeResult]:
         """
         Find all nodes across all samples that match the given terms.
 
@@ -173,28 +225,33 @@ class CytoGateParser:
                 Defaults to None.
 
         Returns:
-            List[GateNode]: All matching nodes across desired trees.
+            List[Dict[str, Dict[str, Any] | List[GateNode]]: All matching nodes across desired trees, with metadata.
+                Always of form {"metadata": Dict[str, Any], "nodes": List[GateNode]}
         """
         matched = []
         samples = self.samples
         if sample_idx:
-            return self.samples[sample_idx].get_nodes(terms, exclude_children=exclude_children)
+            return [NodeResult(
+                metadata=self.samples[sample_idx].metadata,
+                nodes=self.samples[sample_idx].get_nodes(terms, exclude_children=exclude_children)
+            )]
         if sample_criteria:
             samples = self.find_samples(sample_criteria)
             for sample in samples:
-                matched.append({
-                        "metadata": sample.metadata,
-                        "nodes": sample.get_nodes(terms, exclude_children=exclude_children)
-                    })
+                matched.append(NodeResult(
+                        metadata = sample.metadata,
+                        nodes = sample.get_nodes(terms, exclude_children=exclude_children)
+                ))
             return matched
         for sample in samples:
-            matched.append({
-                        "metadata": sample.metadata,
-                        "nodes": sample.get_nodes(terms, exclude_children=exclude_children)
-                    })
+            matched.append(NodeResult(
+                        metadata = sample.metadata,
+                        nodes = sample.get_nodes(terms, exclude_children=exclude_children)
+            ))
         return matched
 
-    #TODO: Make more accurate to tree structure instead of the original DataFrame
+    #TODO: Implement
+    '''
     def to_polars(self) -> pl.DataFrame:
         """
         Convert the original DataFrame to a Polars DataFrame.
@@ -203,6 +260,7 @@ class CytoGateParser:
             pl.DataFrame: The original DataFrame.
         """
         return self.original_df
+    '''
 
     def __repr__(self):
         return f"CytoGateParser(num_samples={len(self)})"

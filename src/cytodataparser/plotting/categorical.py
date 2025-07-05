@@ -3,7 +3,7 @@ import plotly.graph_objects as go
 import polars as pl
 import pandas as pd
 import numpy as np
-from typing import Optional, Dict, Union, Callable, Any, List, Tuple
+from typing import Optional, Dict, Union, Callable, Any, List, Tuple, cast
 import warnings
 
 from .themes import get_color_map
@@ -12,6 +12,8 @@ from cytodataparser import CytoGateParser
 from cytodataparser.utils import helpers
 from cytodataparser.analysis import run_ttest, run_anova
 
+def has_xy(trace) -> bool:
+    return hasattr(trace, "x") and hasattr(trace, "y") and trace.x is not None
 
 def pval_to_star(p):
     if p < 0.001: return '***'
@@ -65,30 +67,24 @@ def add_significance(
 ):
     """
     Add significance lines/stars to a grouped bar or categorical figure.
-
-    Parameters:
-    - fig: Plotly Figure (assumed to be bar, violin, or box)
-    - group_labels: Ordered labels on x-axis (e.g., ["Control", "Treatment A", "Treatment B"])
-    - p_values: Dict of (group1, group2): p-value
-    - y_max: Current max y value in data (used as base for placing annotations)
-    - y_pad: Padding above max y value per annotation layer
-    - star_func: Optional function to convert p-value to annotation (e.g., "***")
     """
-
     if star_func is None:
         star_func = pval_to_star
 
-    # Build mapping from group label -> x positions
     x_lookup = {label: [] for label in group_labels}
 
     for trace in fig.data:
-        if hasattr(trace, "x") and hasattr(trace, "y") and trace.x is not None:
-            for x in trace.x:
-                x_str = str(x)
+        # Safely duck-type: only continue if the trace has .x and .y and they are not None
+        x = getattr(trace, "x", None)
+        y = getattr(trace, "y", None)
+
+        if x is not None and y is not None:
+            for xi in x:
+                x_str = str(xi)
                 if x_str in x_lookup:
-                    x_lookup[x_str].append(x)
-                elif isinstance(x, (int, float)) and str(int(x)) in x_lookup:
-                    x_lookup[str(int(x))].append(x)
+                    x_lookup[x_str].append(xi)
+                elif isinstance(xi, (int, float)) and str(int(xi)) in x_lookup:
+                    x_lookup[str(int(xi))].append(xi)
 
     # Get representative x positions (e.g., bar center per category)
     x_coord = {}
@@ -137,7 +133,7 @@ def add_significance(
 
 def categorical_plot(
     cgp: CytoGateParser,
-    node: Union[List[str], str],
+    node_terms: Union[List[str], str],
     x: str,
     y: str = "pct_parent",
     sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
@@ -160,21 +156,21 @@ def categorical_plot(
     Smart defaults ensure clean and interpretable plots for bench scientists.
     """
 
-    if isinstance(node, str):
-        node = [node]
+    if isinstance(node_terms, str):
+        node_terms = [node_terms]
 
     # Get and flatten data
-    samples = cgp.get_nodes(terms=node, sample_criteria=sample_criteria)
-    if not samples:
-        raise ValueError(f"No samples found for node: {node}")
+    nodes = cgp.get_nodes(terms=node_terms, sample_criteria=sample_criteria)
+    if not nodes:
+        raise ValueError(f"No samples found for node: {node_terms}")
     message = ""
     nodes_found = ""
     first_node_name = ""
     seen_node_name_sets = set()
 
     if color != "node" and facet_row != "node" and facet_col != "node":
-        for sample in samples:
-            node_list = sample["nodes"]
+        for node in nodes:
+            node_list = node["nodes"]
             if len(node_list) > 1:
                 if not message:
                     message = f"Multiple nodes found when using terms: {node}. Make your search terms more specific.\n"
@@ -192,7 +188,7 @@ def categorical_plot(
         message += f"Nodes found: {nodes_found.strip()}\n"
         warnings.warn(message, category=RuntimeWarning)
 
-    df = helpers.flatten_samples(samples)
+    df = helpers.flatten_samples(nodes)
     if message:
         df = df.filter(pl.col("node") == first_node_name)
     pdf = df.to_pandas()
@@ -233,7 +229,6 @@ def categorical_plot(
             **kwargs
         )
 
-    # TODO: implement grouped_bar better
     elif plot_type == "grouped_bar" or plot_type == "bar":
         group_cols = [x]
         if color:
@@ -287,13 +282,13 @@ def categorical_plot(
             if pdf[x].nunique() == 2:
                 if verbose:
                     print("Running t-test")
-                t_result = run_ttest(cgp, node, groupby=x, metric=y)
+                t_result = run_ttest(cgp, node_terms, groupby=x, metric=y)
                 p_map = extract_ttest_pval(t_result)
 
             elif pdf[x].nunique() > 2:
                 if verbose:
                     print("Running ANOVA")
-                a_result = run_anova(cgp, node=node, groupby=x, sample_criteria=sample_criteria, metric=y)
+                a_result = run_anova(cgp, node=node_terms, groupby=x, sample_criteria=sample_criteria, metric=y)
                 p_map = extract_pairwise_pvals(a_result)
 
             if not p_map or all(p >= 0.05 for p in p_map.values()):
