@@ -21,7 +21,8 @@ dependencies = [
     "fastexcel",
     "pingouin",
     "scikit-posthocs",
-    "nbformat>=4.2.0"
+    "nbformat>=4.2.0",
+    "flowkit"
 ]
 
 [tool.setuptools]

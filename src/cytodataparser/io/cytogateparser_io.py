@@ -1,13 +1,40 @@
-from cytodataparser.core import CytoGateParser
 import polars as pl
-from typing import Optional
+from typing import Optional, List, Union
 from pathlib import Path
 import json
 from datetime import date, datetime
 from cytodataparser.structures import GateTree, Sample
 
+# TODO: Implement json loading
+def load_file(path: str | Path, sheet_name: Optional[Union[str, None]]=None) -> List[Sample]:
+    """
+    Load a CytoGateParser from any of: xlsx, xls, csv, or json
 
-def load_from_xlsx(file_path: str, sheet_name: Optional[str] = None) -> CytoGateParser:
+    Parameters:
+        file_path (str): Path to the Excel file.
+        sheet_name (str): Name of the sheet containing gate data.
+
+    Returns:
+        List[Sample]: A list of samples to be loaded into a CytoGateParser.
+    """
+
+    df = pl.DataFrame()
+    if isinstance(path, str):
+        path = Path(path)
+    ending = path.suffix
+    if ending == ".xlsx" or ending == ".xls":
+        df = pl.read_excel(path, sheet_name=sheet_name)
+    elif ending == ".csv":
+        df = pl.read_csv(path)
+    elif ending == ".json":
+        return load_json(path)
+    else:
+        raise ValueError("Unexpected filetype encountered. Please use one of xlsx, xls, csv, or json")
+
+    samples = samples_from_polars(df)
+    return samples
+
+def samples_from_polars(data: pl.DataFrame) -> List[Sample]:
     """
     Load a CytoGateParser from an Excel file.
 
@@ -18,24 +45,29 @@ def load_from_xlsx(file_path: str, sheet_name: Optional[str] = None) -> CytoGate
     Returns:
         CytoGateParser: An instance of CytoGateParser loaded with data from the specified sheet.
     """
-    return CytoGateParser.from_xlsx(file_path, sheet_name)
+
+    metadata = [col for col in data.columns if '|' not in col]
+    metadata = data[metadata]
+    samples_prep = [
+        {
+            "metadata": {k: v[0] if isinstance(v, list) and len(v) == 1 else v
+                            for k, v in metadata[row_idx].to_dict(as_series=False).items()},
+            "tree": GateTree(row)
+        }
+        for row_idx, row in enumerate(data.iter_rows(named=True))
+    ]
+    samples = []
+    for sample in samples_prep:
+        samples.append(Sample(sample["metadata"], sample["tree"]))
+
+    return samples
 
 # TODO: Actually implement
-'''def load_from_csv(file_path: str) -> CytoGateParser:
-    """
-    Load a CytoGateParser from a CSV file.
+def json_to_polars(path: str | Path) -> pl.DataFrame:
+    # TODO: raise error if json is malformed
+    return pl.DataFrame()
 
-    Parameters:
-        file_path (str): Path to the CSV file.
-
-    Returns:
-        CytoGateParser: An instance of CytoGateParser loaded with data from the CSV file.
-    """
-    df = pl.read_csv(file_path)
-    return CytoGateParser(df)
-    '''
-
-def load_from_json(path: str | Path) -> CytoGateParser:
+def load_json(path: str | Path) -> List[Sample]:
     with open(path, "r") as f:
         data = json.load(f)
 
@@ -48,9 +80,7 @@ def load_from_json(path: str | Path) -> CytoGateParser:
             )
         )
 
-    return CytoGateParser(
-        samples=restored_samples
-    )
+    return restored_samples
 
 def _sanitize(obj):
     """Recursively convert unsupported types to JSON-safe formats."""
@@ -63,7 +93,8 @@ def _sanitize(obj):
     else:
         return obj  # leave as is (str, int, float, etc.)
 
-def save_to_json(cgp: CytoGateParser, path: str | Path):
+# TODO: Move to core or helpers
+def save_to_json(cgp, path: str | Path):
     sanitized_samples = []
 
     for sample in cgp.samples:
@@ -77,7 +108,6 @@ def save_to_json(cgp: CytoGateParser, path: str | Path):
 
     data = {
         "samples": sanitized_samples,
-        "metadata_cols": cgp.metadata_cols
     }
 
     with open(path, "w") as f:

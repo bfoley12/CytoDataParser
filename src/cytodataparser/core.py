@@ -5,6 +5,8 @@ from .structures import GateTree, GateNode, Sample
 from .utils.predicates import parse_string_condition, from_range
 from datetime import date, datetime
 from cytodataparser.structures import NodeResult
+from cytodataparser.io import samples_from_polars, json_to_polars, load_file
+#import flowkit as fk
 
 
 
@@ -15,7 +17,7 @@ class CytoGateParser:
     Parses a Polars DataFrame into metadata and gating trees, one per sample.
     """
 
-    def __init__(self, samples: List[Sample], original_df: Optional[Union[pl.DataFrame, None]] = None, metadata_cols=None):
+    def __init__(self, samples: List[Sample]):
         """
         Initialize the CytoGateParser.
 
@@ -24,40 +26,43 @@ class CytoGateParser:
             metadata_cols (Optional[List[str]]): List of columns to treat as metadata.
                                              If None, inferred by excluding columns with '|' in name.
         """
-        self.original_df = original_df
-        self.metadata_cols = metadata_cols if metadata_cols else self._gather_metadata(samples)
         self.samples: List[Sample] = samples
 
-    # TODO: Implement loading from xlsx, csv, and polars dataframe
+    # TODO: Implement loading from wsp
+    '''
     @classmethod
-    def from_xlsx(cls, path: str, sheet_name: Optional[Union[str, None]]=None) -> CytoGateParser:
+    def from_wsp(cls, path: str) -> CytoGateParser:
+        
+        Construct a CytoGateParser from a FlowJo WSP file
+
+        Parameters:
+            path (str): The path (relative or absolute) to the wsp file (including filename)
+
+        Returns:
+            CytoGateParser: A CytoGateParser Object
+        
+        ws = fk.parse_wsp(path)
+    '''
+
+    # TODO: Implement loading from json
+    @classmethod
+    def from_file(cls, path: str, sheet_name: Optional[Union[str, None]]=None) -> CytoGateParser:
         """
-        Construct a CytoGateParser from an xlsx file
+        Construct a CytoGateParser from a file
+
+        Parameters:
+            path (str): the path to the file containing the sample information (one of xlsx, xls, csv, or json)
+            sheetname (str, optional): sheet_name, if loading from specific xlsx sheet
         """
-        data = pl.read_excel(path, sheet_name=sheet_name)
-        metadata = [col for col in data.columns if '|' not in col]
-        metadata = data[metadata]
-        samples_prep = [
-            {
-                "metadata": {k: v[0] if isinstance(v, list) and len(v) == 1 else v
-                              for k, v in metadata[row_idx].to_dict(as_series=False).items()},
-                "tree": GateTree(row)
-            }
-            for row_idx, row in enumerate(data.iter_rows(named=True))
-        ]
-        samples = []
-        for sample in samples_prep:
-            samples.append(Sample(sample["metadata"], sample["tree"]))
-        return cls(samples, data, metadata.columns)
+        return cls(load_file(path, sheet_name))
     
-    # TODO: Redundant with default __init__
     @classmethod
-    def from_samples(cls, samples: List[Sample], original_df: Optional[pl.DataFrame] = None) -> CytoGateParser:
+    def from_samples(cls, samples: List[Sample]) -> CytoGateParser:
         """
         Construct a CytoGateParser from a list of samples.
         """
 
-        return cls(samples, original_df)
+        return cls(samples)
 
     @staticmethod
     def _flatten_tree_to_row(tree: Any) -> dict:
@@ -75,6 +80,18 @@ class CytoGateParser:
 
         recurse(tree.root, [])
         return result
+    
+    def add_samples(self, path: str, sheet_name: Optional[str] = None) -> CytoGateParser:
+        '''
+        Adds samples to the current CytoGateParser instance.
+
+        Parameters:
+            path (str): the path to the file containing the sample information (one of xlsx, xls, csv, or json)
+            sheetname (str, optional): sheet_name, if loading from specific xlsx sheet
+        '''
+        self.samples = self.samples + load_file(path, sheet_name)
+
+        return self
     
     def _gather_metadata(self, samples: List[Sample]):
         all_metadata_cols = set()
@@ -337,6 +354,5 @@ class CytoGateParser:
                     "metadata": sanitize(sample["metadata"]),
                     "tree": sanitize(sample["tree"])
                 } for sample in self.samples
-            ],
-            "metadata_cols": self.metadata_cols
+            ]
         }
