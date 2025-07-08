@@ -5,7 +5,6 @@ import json
 from datetime import date, datetime
 from cytodataparser.structures import GateTree, Sample
 
-# TODO: Implement json loading
 def load_file(path: str | Path, sheet_name: Optional[Union[str, None]]=None) -> List[Sample]:
     """
     Load a CytoGateParser from any of: xlsx, xls, csv, or json
@@ -62,21 +61,35 @@ def samples_from_polars(data: pl.DataFrame) -> List[Sample]:
 
     return samples
 
-# TODO: Actually implement
-def json_to_polars(path: str | Path) -> pl.DataFrame:
-    # TODO: raise error if json is malformed
-    return pl.DataFrame()
+def load_json(path: Union[str, Path]) -> List[Sample]:
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"File not found: {path}")
 
-def load_json(path: str | Path) -> List[Sample]:
-    with open(path, "r") as f:
-        data = json.load(f)
+    try:
+        with open(path, "r") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Malformed JSON file: {e}") from e
+
+    if not isinstance(data, dict) or "samples" not in data:
+        raise ValueError("JSON must contain a top-level 'samples' key.")
+
+    if not isinstance(data["samples"], list):
+        raise ValueError("'samples' must be a list.")
 
     restored_samples = []
-    for sample in data["samples"]:
+    for i, sample in enumerate(data["samples"]):
+        if not isinstance(sample, dict):
+            raise ValueError(f"Sample at index {i} is not a dictionary.")
+
+        if "metadata" not in sample or "tree" not in sample:
+            raise ValueError(f"Sample at index {i} must contain 'metadata' and 'tree' keys.")
+
         restored_samples.append(
             Sample(
-                metadata=sample["metadata"],
-                tree=GateTree.from_dict(sample["tree"])
+                metadata=_sanitize(sample["metadata"]),
+                tree=_sanitize(GateTree.from_dict(sample["tree"]))
             )
         )
 

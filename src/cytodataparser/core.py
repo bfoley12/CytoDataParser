@@ -5,12 +5,9 @@ from .structures import GateTree, GateNode, Sample
 from .utils.predicates import parse_string_condition, from_range
 from datetime import date, datetime
 from cytodataparser.structures import NodeResult
-from cytodataparser.io import samples_from_polars, json_to_polars, load_file
+from cytodataparser.io import load_file
 #import flowkit as fk
 
-
-
-#TODO: Allow for loading with a .wsp file instead of polars dataframe
 class CytoGateParser:
     """
     Main class for managing cytometry gating data.
@@ -44,7 +41,6 @@ class CytoGateParser:
         ws = fk.parse_wsp(path)
     '''
 
-    # TODO: Implement loading from json
     @classmethod
     def from_file(cls, path: str, sheet_name: Optional[Union[str, None]]=None) -> CytoGateParser:
         """
@@ -105,25 +101,6 @@ class CytoGateParser:
         """Infer metadata columns as those that do not contain '|' in their names."""
         return [col for col in df.columns if '|' not in col]
 
-    # Deprecated
-    '''
-    def _build_samples(self) -> List[Dict[str, Any]]:
-        """
-        Build a list of samples, each represented as a dictionary with metadata and a GateTree.
-
-        Returns:
-            List[Dict[str, Any]]: Each sample contains {'metadata': ..., 'tree': ...}
-        """
-        return [
-            {
-                "metadata": {k: v[0] if isinstance(v, list) and len(v) == 1 else v
-                              for k, v in self.metadata[row_idx].to_dict(as_series=False).items()},
-                "tree": GateTree(row)
-            }
-            for row_idx, row in enumerate(self.data.iter_rows(named=True))
-        ]
-        '''
-
     def __len__(self):
         return len(self.samples)
 
@@ -139,7 +116,6 @@ class CytoGateParser:
     #TODO: Allow for exact values like {"Strain": "B6"}, currently it has to be e.g., {"Strain": "== B6"}
     def filter(self, criteria: Dict[str, Union[Any, str, range, Callable[[Any], bool]]]) -> CytoGateParser:
         """
-        Deprecated: Use filter instead
         Find sample indices matching specified metadata criteria.
 
         Parameters:
