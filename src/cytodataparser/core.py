@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Optional, List, Dict, Any, Callable, Union, Iterator
 import polars as pl
-from .structures import GateTree, GateNode, Sample
+from .structures import GateTree, Sample
 from .utils.predicates import parse_string_condition, from_range
 from datetime import date, datetime
 from cytodataparser.structures import NodeResult
@@ -78,13 +78,13 @@ class CytoGateParser:
         return result
     
     def add_samples(self, path: str, sheet_name: Optional[str] = None) -> CytoGateParser:
-        '''
+        """
         Adds samples to the current CytoGateParser instance.
 
         Parameters:
             path (str): the path to the file containing the sample information (one of xlsx, xls, csv, or json)
             sheetname (str, optional): sheet_name, if loading from specific xlsx sheet
-        '''
+        """
         self.samples = self.samples + load_file(path, sheet_name)
 
         return self
@@ -95,11 +95,6 @@ class CytoGateParser:
             all_metadata_cols.update(sample.metadata.keys())
 
         return list(all_metadata_cols)
-
-    # Out of date: Used when loading from polars dataframe. Maybe keep?
-    def _infer_metadata_cols(self, df: pl.DataFrame) -> List[str]:
-        """Infer metadata columns as those that do not contain '|' in their names."""
-        return [col for col in df.columns if '|' not in col]
 
     def __len__(self):
         return len(self.samples)
@@ -205,20 +200,22 @@ class CytoGateParser:
 
     #TODO: If sample_criteria isn't specified, get all samples (currently returns [])
     def get_nodes(self, 
-                  terms: Union[List[List[str]], List[str]], 
+                  terms: Optional[Union[List[List[str]], List[str], None]]=None, 
                   sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]]= None, 
-                  exclude_children: bool=True, sample_idx: Optional[int]=None
+                  exclude_children: bool=True, 
+                  sample_idx: Optional[int]=None
                   ) -> List[NodeResult]:
         """
         Find all nodes across all samples that match the given terms.
 
         Parameters:
-            terms (List[str]): Each string may be a full path or a partial sub-path component.
-            sample_idx (int, optional): Index of the sample to search in. If None, search all samples.
-                Defaults to None.
+            terms (Union[List[List[str]], List[str]], optional): Each string may be a full path or a partial sub-path component. If None, get all nodes for requested samples
+            sample_criteria (Dict[str, Union[Any, str, range, Callable[[Any], bool]]], optional): Metadata describing samples to query across.
+                Defaults to None (query all samples).
+            sample_index (int, optional): Allows specifying index to query sample directly
 
         Returns:
-            List[Dict[str, Dict[str, Any] | List[GateNode]]: All matching nodes across desired trees, with metadata.
+            List[NodeResult]: All matching nodes across desired samples, with metadata.
                 Always of form {"metadata": Dict[str, Any], "nodes": List[GateNode]}
         """
         matched = []

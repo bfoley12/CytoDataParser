@@ -97,7 +97,7 @@ class GateTree:
                     node.add_child(ungated_node)
                     self.nodes[ungated_path] = ungated_node
 
-    def get_nodes(self, terms: Union[List[List[str]], List[str]], exclude_children: bool = True) -> List[GateNode]:
+    def get_nodes(self, terms: Union[List[List[str]], List[str], None]=None, exclude_children: bool = True) -> List[GateNode]:
         """
         Retrieve nodes by either full path or path component match.
         If a single term is given, perform full path or partial match.
@@ -111,9 +111,16 @@ class GateTree:
         Returns:
             List[GateNode]: Matching nodes.
         """
+
+        matches = set()
+        if terms is None:
+            for path, node in self.nodes.items():
+                matches.add(node)
+            return list(matches)
+
         if isinstance(terms, str):
             terms = [terms.strip()]
-        matches = set()
+        
         if len(terms) == 1 and terms[0] in self.nodes:
             matches.add(self.nodes[terms[0]])
         
