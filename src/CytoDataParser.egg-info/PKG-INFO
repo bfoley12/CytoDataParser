@@ -18,4 +18,5 @@ Requires-Dist: fastexcel
 Requires-Dist: pingouin
 Requires-Dist: scikit-posthocs
 Requires-Dist: nbformat>=4.2.0
+Requires-Dist: flowkit
 Dynamic: license-file

@@ -4,12 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "CytoDataParser"
-version = "0.2.0"
+version = "0.3.0"
 description = "Eases the analysis and plotting of expert-gated cytometry data"
 authors = [{ name="Brendan Foley", email="bfoley3@jh.edu" }]
 readme = "README.md"
 license = { text = "MIT" }
 dependencies = [
+    "python==3.12",
     "pandas",
     "numpy",
     "plotly",

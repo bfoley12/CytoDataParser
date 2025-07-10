@@ -2,12 +2,13 @@ from __future__ import annotations
 from typing import Optional, Dict, List, Any, Union
 from .tree import GateTree
 from .node import GateNode
+from pathlib import Path
 
-# TODO: Define __getitem__
 class Sample:
-    def __init__(self, metadata: Dict[str, Any], tree: GateTree):
+    def __init__(self, metadata: Dict[str, Any], tree: GateTree, fcs_file: Optional[Path]=None):
         self.metadata = metadata
         self.tree = tree
+        self.fcs_file = fcs_file
 
     def get_nodes(self, terms, exclude_children) -> List[GateNode]:
         return self.tree.get_nodes(terms=terms, exclude_children=exclude_children)

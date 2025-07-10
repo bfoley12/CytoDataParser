@@ -10,3 +10,4 @@ fastexcel
 pingouin
 scikit-posthocs
 nbformat>=4.2.0
+flowkit

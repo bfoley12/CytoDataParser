@@ -6,6 +6,7 @@ from .utils.predicates import parse_string_condition, from_range
 from datetime import date, datetime
 from cytodataparser.structures import NodeResult
 from cytodataparser.io import load_file
+from pathlib import Path
 #import flowkit as fk
 
 class CytoGateParser:
@@ -42,7 +43,7 @@ class CytoGateParser:
     '''
 
     @classmethod
-    def from_file(cls, path: str, sheet_name: Optional[Union[str, None]]=None) -> CytoGateParser:
+    def from_file(cls, path: str, sheet_name: Optional[Union[str, None]]=None, fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed") -> CytoGateParser:
         """
         Construct a CytoGateParser from a file
 
@@ -50,7 +51,7 @@ class CytoGateParser:
             path (str): the path to the file containing the sample information (one of xlsx, xls, csv, or json)
             sheetname (str, optional): sheet_name, if loading from specific xlsx sheet
         """
-        return cls(load_file(path, sheet_name))
+        return cls(load_file(path, sheet_name, fcs_files))
     
     @classmethod
     def from_samples(cls, samples: List[Sample]) -> CytoGateParser:

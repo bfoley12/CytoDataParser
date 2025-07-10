@@ -135,7 +135,7 @@ def categorical_plot(
     cgp: CytoGateParser,
     node_terms: Union[List[str], str],
     x: str,
-    y: str = "pct_parent",
+    y: str = "relative_percent",
     sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     legend_names: Optional[Dict[str, str]] = None,
     color: Optional[str] = None,

@@ -4,15 +4,18 @@ from pathlib import Path
 import json
 from datetime import date, datetime
 from cytodataparser.structures import GateTree, Sample
+import flowkit as fk
+import sys
 
-def load_file(path: str | Path, sheet_name: Optional[Union[str, None]]=None) -> List[Sample]:
+def load_file(path: Union[str, Path], sheet_name: Optional[Union[str, None]]=None, fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed") -> List[Sample]:
     """
     Load a CytoGateParser from any of: xlsx, xls, csv, or json
 
     Parameters:
-        file_path (str): Path to the Excel file.
+        path (str): Path to the Excel file.
         sheet_name (str): Name of the sheet containing gate data.
-
+        fcs_files (Union[str, List[str], Path, List[Path]]): If str or path, this must be the top level folder containing all fcs files. load_wsp will search all subfolders (excluding "Reference Group") for fcs files
+            If List[str] or List[Path], depending on if the entries end in .fcs will be treated as directories to search or as files to load
     Returns:
         List[Sample]: A list of samples to be loaded into a CytoGateParser.
     """
@@ -20,29 +23,122 @@ def load_file(path: str | Path, sheet_name: Optional[Union[str, None]]=None) -> 
     df = pl.DataFrame()
     if isinstance(path, str):
         path = Path(path)
+
     ending = path.suffix
+
+    # TODO: make load_excel and load_csv methods to unify interface
     if ending == ".xlsx" or ending == ".xls":
         df = pl.read_excel(path, sheet_name=sheet_name)
     elif ending == ".csv":
         df = pl.read_csv(path)
     elif ending == ".json":
         return load_json(path)
+    elif ending == ".wsp":
+        return load_wsp(path, fcs_files)
     else:
         raise ValueError("Unexpected filetype encountered. Please use one of xlsx, xls, csv, or json")
 
     samples = samples_from_polars(df)
     return samples
 
-def samples_from_polars(data: pl.DataFrame) -> List[Sample]:
+def load_wsp(
+    path: Union[str, Path],
+    fcs_files: Union[str, List[str], Path, List[Path]] = "./Unmixed"
+) -> List[Sample]:
     """
-    Load a CytoGateParser from an Excel file.
+    Load Samples from a FlowJo Workspace file and associated FCS files.
 
     Parameters:
-        file_path (str): Path to the Excel file.
-        sheet_name (str): Name of the sheet containing gate data.
+        path (Union[str, Path]): Path to the FlowJo .wsp file.
+        fcs_files (Union[str, List[str], Path, List[Path]]): If str or Path, it is a top-level folder
+            where all FCS files are stored. If a list, each entry is either a directory (searched recursively,
+            skipping 'Reference Group') or a specific .fcs file.
 
     Returns:
-        CytoGateParser: An instance of CytoGateParser loaded with data from the specified sheet.
+        List[dict]: A list of dicts with 'metadata' and 'tree' (gated counts) for each sample.
+    """
+    wsp_path = Path(path)
+
+    if isinstance(fcs_files, (str, Path)):
+        fcs_files = [fcs_files] # type: ignore
+
+    # Resolve all paths relative to the user's script
+    resolved_fcs_paths = [resolve_relative_to_entrypoint(p) for p in fcs_files] # type: ignore
+
+    # Find FCS files
+    fcs_paths = []
+    for item in resolved_fcs_paths:
+        item_path = Path(item)
+        if item_path.is_dir():
+            fcs_paths.extend([
+                str(fcs) for fcs in item_path.rglob("*.fcs")
+                if "Reference Group" not in fcs.parts
+            ])
+        elif item_path.is_file() and item_path.suffix.lower() == ".fcs":
+            fcs_paths.append(str(item_path))
+
+    # Map FCS base name to full path (case-insensitive match)
+    fcs_map = {fcs.lower(): fcs for fcs in fcs_paths}
+
+    output = []
+
+    for sample_path in fcs_map.values():
+        # TODO: Implement disk checking
+        #fcs_name = Path(sample.fcs_file).name.lower()
+        #if fcs_name not in fcs_map:
+        #    print(f"FCS file {fcs_name} not found on disk. Skipping.")
+        #    continue
+
+        sample_wsp = fk.Workspace(wsp_path, sample_path)
+        sample = sample_wsp.get_samples()[0]
+
+        # Extract metadata
+        metadata = sample.get_metadata()
+        # Extract gating tree (counts per gate)
+        sample_wsp.analyze_samples()
+        result = sample_wsp.get_analysis_report()
+
+        output.append(*samples_from_wsp(sample_wsp))
+
+    return output
+
+def samples_from_wsp(wsp: fk.Workspace) -> List[Sample]:
+    # Prep table to make GateTree
+    metadata = pl.DataFrame([wsp.get_keywords(sample.id) for sample in wsp.get_samples()])
+    wsp.analyze_samples()
+    summary = wsp.get_analysis_report()
+
+    # Format gate_path to work with GateNode
+    summary['full_path'] = summary.apply(
+        lambda row: "/".join(row['gate_path'] + (row['gate_name'],)),
+        axis=1
+    )
+
+    # Pivot and format to work with GateNode/GateTree
+    summary = summary.pivot(index = "sample", columns="full_path", values=["count", "absolute_percent", "relative_percent"])
+
+    summary.columns = [f"{col[1]} | {col[0]}" for col in summary.columns]
+
+    # Optional: reset index if you want 'sample' as a column
+    summary = summary.reset_index()
+    #summary['sample'] = summary['sample'].str.replace(r'\.fcs$', '', case=False, regex=True)
+    summary = pl.DataFrame(summary)
+
+    # Add on metadata
+    summary = summary.join(metadata, left_on="sample", right_on = "$FIL")
+
+    return samples_from_polars(summary)
+
+
+def samples_from_polars(data: pl.DataFrame) -> List[Sample]:
+    """
+    Format Samples from a polars dataframe
+
+    Parameters:
+        data (pl.DataFrame): a polars dataframe, with data columns denoted by *gate_path* | *metric* and metadata columns lacking "|"
+
+    Returns:
+        List[Sample]: A list of samples to be loaded into a CytoGateParser
     """
 
     metadata = [col for col in data.columns if '|' not in col]
@@ -125,3 +221,17 @@ def save_to_json(cgp, path: str | Path):
 
     with open(path, "w") as f:
         json.dump(data, f, indent=2)
+
+def resolve_relative_to_entrypoint(path: Union[str, Path]) -> Path:
+    """Resolve a path relative to the user's script entrypoint. In interactive mode, use cwd."""
+    path = Path(path)
+    if path.is_absolute():
+        return path
+
+    try:
+        main_module = sys.modules["__main__"]
+        entry_dir = Path(getattr(main_module, "__file__", Path.cwd())).resolve()
+        return (entry_dir / path).resolve()
+    except Exception:
+        # Absolute fallback: current working directory
+        return path.resolve()
