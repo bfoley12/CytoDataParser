@@ -241,6 +241,13 @@ class CytoGateParser:
             ))
         return matched
 
+    def merge(self, cgp: Union[CytoGateParser, List[CytoGateParser]]):
+        if isinstance(cgp, CytoGateParser):
+            cgp = [cgp]
+        for c in cgp:
+            self.samples = self.samples + c.samples
+        return self
+
     #TODO: Implement
     '''
     def to_polars(self) -> pl.DataFrame:
