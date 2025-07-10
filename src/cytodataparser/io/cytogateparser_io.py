@@ -7,6 +7,7 @@ from cytodataparser.structures import GateTree, Sample
 import flowkit as fk
 import sys
 
+# TODO: for load_wsp, path should point directly to the .wsp - need to make this more clear
 def load_file(path: Union[str, Path], sheet_name: Optional[Union[str, None]]=None, fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed") -> List[Sample]:
     """
     Load a CytoGateParser from any of: xlsx, xls, csv, or json
@@ -88,9 +89,15 @@ def load_wsp(
         #if fcs_name not in fcs_map:
         #    print(f"FCS file {fcs_name} not found on disk. Skipping.")
         #    continue
-
+        print(sample_path)
         sample_wsp = fk.Workspace(wsp_path, sample_path)
-        sample = sample_wsp.get_samples()[0]
+        sample = sample_wsp.get_samples()
+        if sample == []:
+            print(f"Unable to load fcs file: {sample_path}")
+            continue
+        sample = sample[0]
+        
+        print(sample)
 
         # Extract metadata
         metadata = sample.get_metadata()
