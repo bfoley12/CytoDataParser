@@ -134,17 +134,17 @@ def add_significance(
 def categorical_plot(
     cgp: CytoGateParser,
     node_terms: Union[List[str], str],
-    x: str,
+    x: Union[str, List[str]],
     y: str = "relative_percent",
     sample_criteria: Optional[Dict[str, Union[Any, str, range, Callable[[Any], bool]]]] = None,
     legend_names: Optional[Dict[str, str]] = None,
+    # TODO: Implement List color
     color: Optional[str] = None,
     facet_row: Optional[str] = None,
     facet_col: Optional[str] = None,
     label_sig: bool = True,
     plot_type: str = "box",
     show_points: bool = False,
-    jitter_strength: float = 0.01,  # currently unused
     color_map: Optional[dict] = None,
     agg_func: str = "mean",
     error: str = "sem",
@@ -196,14 +196,19 @@ def categorical_plot(
     if color not in pdf.columns:
         color = None
         warnings.warn(message="Color column not found in DataFrame", category=RuntimeWarning)
+
+    if isinstance(x, List):
+        pdf["x_axis"] = pdf[x].astype(str).agg('_'.join, axis=1)
+    else:
+        pdf["x_axis"] = pdf[x]
     # Clean categorical ordering
-    pdf[x] = pd.Categorical(pdf[x], categories=sorted(pdf[x].unique()), ordered=True)
+    pdf["x_axis"] = pd.Categorical(pdf["x_axis"], categories=sorted(pdf["x_axis"].unique()), ordered=True)
     if color:
         pdf[color] = pd.Categorical(pdf[color], categories=sorted(pdf[color].unique()), ordered=True)
         if color_map is None:
             color_map = get_color_map(color, pdf[color].unique().tolist())
             
-    plot_x = x
+    plot_x = "x_axis"
     if "category_orders" not in kwargs and color:
         kwargs["category_orders"] = {
             plot_x: pdf[plot_x].cat.categories.tolist(),
@@ -230,7 +235,10 @@ def categorical_plot(
         )
 
     elif plot_type == "grouped_bar" or plot_type == "bar":
-        group_cols = [x]
+        if isinstance(x, str):
+            group_cols = [x]
+        else:
+            group_cols = x
         if color:
             group_cols.append(color)
 
@@ -263,10 +271,14 @@ def categorical_plot(
         fig.update_yaxes(range=[0, y_max * 1.25])
     else:
         raise ValueError(f"Unsupported plot_type: {plot_type}")
+    
+    x_title = x
+    if isinstance(x_title, List):
+        x_title = "_".join(x_title)
 
     # Axis labels
     fig.update_layout(
-        xaxis_title=x.replace("_", " ").title(),
+        xaxis_title=x_title.replace("_", " ").title(),
         yaxis_title=y.replace("_", " ").title(),
         margin=dict(t=40, b=40, l=40, r=40),
     )
@@ -279,16 +291,16 @@ def categorical_plot(
         try:
             p_map = {}
 
-            if pdf[x].nunique() == 2:
+            if pdf["x_axis"].nunique() == 2:
                 if verbose:
                     print("Running t-test")
-                t_result = run_ttest(cgp, node_terms, groupby=x, metric=y)
+                t_result = run_ttest(cgp, node_terms, groupby="x_axis", metric=y)
                 p_map = extract_ttest_pval(t_result)
 
-            elif pdf[x].nunique() > 2:
+            elif pdf["x_axis"].nunique() > 2:
                 if verbose:
                     print("Running ANOVA")
-                a_result = run_anova(cgp, node=node_terms, groupby=x, sample_criteria=sample_criteria, metric=y)
+                a_result = run_anova(cgp, node=node_terms, groupby="x_axis", sample_criteria=sample_criteria, metric=y)
                 p_map = extract_pairwise_pvals(a_result)
 
             if not p_map or all(p >= 0.05 for p in p_map.values()):
