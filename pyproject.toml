@@ -9,8 +9,8 @@ description = "Eases the analysis and plotting of expert-gated cytometry data"
 authors = [{ name="Brendan Foley", email="bfoley3@jh.edu" }]
 readme = "README.md"
 license = { text = "MIT" }
+requires-python = "== 3.12"
 dependencies = [
-    "python==3.12",
     "pandas",
     "numpy",
     "plotly",
