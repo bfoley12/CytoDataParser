@@ -46,6 +46,7 @@ def load_file(path: Union[str, Path],
     samples = samples_from_polars(df)
     return samples
 
+# TODO: Account for samples with no assigned gates
 def load_wsp(
     path: Union[str, Path],
     fcs_files: Union[str, List[str], Path, List[Path]] = "./Unmixed",
@@ -98,20 +99,15 @@ def load_wsp(
         #    print(f"FCS file {fcs_name} not found on disk. Skipping.")
         #    continue
         print(sample_path)
+        
+        # TODO: address UserWarning
         sample_wsp = fk.Workspace(wsp_path, sample_path)
         sample = sample_wsp.get_samples()
         if sample == []:
-            print(f"Unable to load fcs file: {sample_path}")
+            if verbose:
+                print(f"Unable to load fcs file: {sample_path}")
             continue
         sample = sample[0]
-        
-        print(sample)
-
-        # Extract metadata
-        metadata = sample.get_metadata()
-        # Extract gating tree (counts per gate)
-        sample_wsp.analyze_samples()
-        result = sample_wsp.get_analysis_report()
 
         output.append(*samples_from_wsp(sample_wsp))
 
