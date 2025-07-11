@@ -198,9 +198,9 @@ def categorical_plot(
         warnings.warn(message="Color column not found in DataFrame", category=RuntimeWarning)
 
     if isinstance(x, List):
-        pdf["x_axis"] = pdf[x].astype(str).agg('_'.join, axis=1)
+        pdf["x_axis"] = pdf[x].fillna("Unknown").astype(str).agg('_'.join, axis=1)
     else:
-        pdf["x_axis"] = pdf[x]
+        pdf["x_axis"] = pdf[x].fillna("Unknown").astype(str)
     # Clean categorical ordering
     pdf["x_axis"] = pd.Categorical(pdf["x_axis"], categories=sorted(pdf["x_axis"].unique()), ordered=True)
     if color:
