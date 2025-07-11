@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "CytoDataParser"
-version = "0.3.0"
+version = "0.3.1"
 description = "Eases the analysis and plotting of expert-gated cytometry data"
 authors = [{ name="Brendan Foley", email="bfoley3@jh.edu" }]
 readme = "README.md"
