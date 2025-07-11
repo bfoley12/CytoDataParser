@@ -43,7 +43,11 @@ class CytoGateParser:
     '''
 
     @classmethod
-    def from_file(cls, path: str, sheet_name: Optional[Union[str, None]]=None, fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed") -> CytoGateParser:
+    def from_file(cls, 
+                  path: str, 
+                  sheet_name: Optional[Union[str, None]]=None, 
+                  fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed",
+                  verbose: Optional[bool]=True) -> CytoGateParser:
         """
         Construct a CytoGateParser from a file
 
@@ -51,7 +55,7 @@ class CytoGateParser:
             path (str): the path to the file containing the sample information (one of xlsx, xls, csv, or json)
             sheetname (str, optional): sheet_name, if loading from specific xlsx sheet
         """
-        return cls(load_file(path, sheet_name, fcs_files))
+        return cls(load_file(path, sheet_name, fcs_files, verbose))
     
     @classmethod
     def from_samples(cls, samples: List[Sample]) -> CytoGateParser:
