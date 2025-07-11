@@ -6,9 +6,13 @@ from datetime import date, datetime
 from cytodataparser.structures import GateTree, Sample
 import flowkit as fk
 import sys
+import warnings
 
 # TODO: for load_wsp, path should point directly to the .wsp - need to make this more clear
-def load_file(path: Union[str, Path], sheet_name: Optional[Union[str, None]]=None, fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed") -> List[Sample]:
+def load_file(path: Union[str, Path], 
+              sheet_name: Optional[Union[str, None]]=None, 
+              fcs_files: Union[str, List[str], Path, List[Path]]="./Unmixed",
+              verbose: Optional[bool]=True) -> List[Sample]:
     """
     Load a CytoGateParser from any of: xlsx, xls, csv, or json
 
@@ -35,7 +39,7 @@ def load_file(path: Union[str, Path], sheet_name: Optional[Union[str, None]]=Non
     elif ending == ".json":
         return load_json(path)
     elif ending == ".wsp":
-        return load_wsp(path, fcs_files)
+        return load_wsp(path, fcs_files, verbose=verbose)
     else:
         raise ValueError("Unexpected filetype encountered. Please use one of xlsx, xls, csv, or json")
 
@@ -44,7 +48,8 @@ def load_file(path: Union[str, Path], sheet_name: Optional[Union[str, None]]=Non
 
 def load_wsp(
     path: Union[str, Path],
-    fcs_files: Union[str, List[str], Path, List[Path]] = "./Unmixed"
+    fcs_files: Union[str, List[str], Path, List[Path]] = "./Unmixed",
+    verbose: Optional[bool]=True
 ) -> List[Sample]:
     """
     Load Samples from a FlowJo Workspace file and associated FCS files.
@@ -58,6 +63,9 @@ def load_wsp(
     Returns:
         List[dict]: A list of dicts with 'metadata' and 'tree' (gated counts) for each sample.
     """
+    if not verbose:
+        warnings.filterwarnings("ignore", category=UserWarning)
+
     wsp_path = Path(path)
 
     if isinstance(fcs_files, (str, Path)):
